@@ -1,46 +1,49 @@
-# Glass Shelf (테마)
+# Glass Shelf (Theme)
 
-반투명한 유리 질감의 Obsidian 테마입니다.
+**English** · [한국어](README.ko.md)
 
-> **Glass Shelf 플러그인이 필요합니다.** 이 테마는 Glass Shelf 플러그인과 함께 쓰도록 만들었습니다. 테마와 플러그인을 모두 설치하고 켜야 의도한 화면이 완성됩니다.
+A translucent, glassy theme for Obsidian.
+
+> **Requires the Glass Shelf plugin.** This theme is built to be used together with the Glass Shelf plugin. Install and enable both to get the intended look.
 
 <p align="center">
-  <img src="images/light-main.png" width="49%" alt="라이트 모드">
-  <img src="images/dark-main.png" width="49%" alt="다크 모드">
+  <img src="images/light-main.png" width="49%" alt="Light mode">
+  <img src="images/dark-main.png" width="49%" alt="Dark mode">
 </p>
 
-## 특징
+## Features
 
-- 패널, 메뉴, 팝업을 흐린 유리로 표현하는 글래스모피즘
-- 알약 모양 버튼과 곡률이 서서히 바뀌는 둥근 모서리 (Chromium 139 이상)
-- 원티드 산스 기반 글꼴 내장 (별도 설치 불필요)
-- 폴더·문서 아이콘
+- Glassmorphism: panels, menus and popups rendered as blurred glass
+- Pill-shaped buttons and rounded corners with smoothly changing curvature (Chromium 139 or later)
+- Built-in font based on Wanted Sans (no separate install needed)
+- Folder and file icons
 
-## 동반 플러그인
+## Companion plugin
 
-**Glass Shelf 플러그인**이 버튼 재배치, 굴절 효과, 애니메이션, 세부 설정을 담당합니다. 테마는 유리 표현을, 플러그인은 배치와 움직임을 맡는 구조입니다.
+The **Glass Shelf plugin** handles button layout, refraction, animation and fine-grained settings. The theme draws the glass; the plugin handles layout and motion.
 
-## 지원 환경
+## Supported platforms
 
-- **PC와 안드로이드 환경을 중심으로 제작했습니다.**
-- iPhone·iPad에서는 굴절 효과가 작동하지 않아, 대신 흐림(블러) 처리만 적용됩니다.
-- macOS는 충분히 테스트하지 못해 일부 표현이 어색할 수 있습니다.
-- 둥근 모서리의 곡률 효과는 Chromium 139 이상에서 보입니다.
+- **Built mainly for desktop (Windows) and Android.**
+- On iPhone and iPad, refraction does not work, so only blur is applied.
+- macOS has not been tested thoroughly, so some details may look off.
+- The smooth corner curvature is visible on Chromium 139 or later.
 
-## 설치
+## Installation
 
-1. **설정 → 모양 → 테마 → 관리**에서 **Glass Shelf**를 검색해 설치하고 켭니다.
-2. **설정 → 커뮤니티 플러그인**에서 **Glass Shelf** 플러그인을 설치하고 켭니다.
+1. In **Settings → Appearance → Themes → Manage**, search for **Glass Shelf**, then install and enable it.
+2. Install and enable the **Glass Shelf** plugin in **Settings → Community plugins**.
 
-## 출처
+## Credits
 
-- 글꼴: [Wanted Sans](https://github.com/wanteddev/wanted-sans)를 줄인 판, SIL Open Font License 1.1
+- Font: a subset of [Wanted Sans](https://github.com/wanteddev/wanted-sans), SIL Open Font License 1.1
 
-## 후원
+## Support
 
-Glass Shelf가 마음에 드셨다면 커피 한 잔으로 응원해 주세요.
+If you enjoy Glass Shelf, you can support it with a coffee.
 
-[![Ko-fi에서 후원하기](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/ummbition)
-## 라이선스
+[![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/ummbition)
 
-테마 코드는 [MIT](LICENSE), 내장 글꼴은 SIL OFL 1.1을 따릅니다.
+## License
+
+Theme code is under the [MIT](LICENSE) license. The bundled font is under SIL OFL 1.1.
