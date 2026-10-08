@@ -36,7 +36,7 @@
 
 ## 출처
 
-- 글꼴: [Wanted Sans](https://github.com/wanteddev/wanted-sans)를 줄인 판, SIL Open Font License 1.1
+- 글꼴: [Wanted Sans](https://github.com/wanteddev/wanted-sans)를 줄인 판, SIL Open Font License 1.1 (원문: [OFL.txt](OFL.txt))
 
 ## 후원
 
@@ -46,4 +46,4 @@ Glass Shelf가 마음에 드셨다면 커피 한 잔으로 응원해 주세요.
 
 ## 라이선스
 
-테마 코드는 [MIT](LICENSE), 내장 글꼴은 SIL OFL 1.1을 따릅니다.
+테마 코드는 [MIT](LICENSE), 내장 글꼴은 SIL OFL 1.1([OFL.txt](OFL.txt))을 따릅니다.

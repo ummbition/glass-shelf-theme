@@ -36,7 +36,7 @@ The **Glass Shelf plugin** handles button layout, refraction, animation and fine
 
 ## Credits
 
-- Font: a subset of [Wanted Sans](https://github.com/wanteddev/wanted-sans), SIL Open Font License 1.1
+- Font: a subset of [Wanted Sans](https://github.com/wanteddev/wanted-sans), SIL Open Font License 1.1 (full text: [OFL.txt](OFL.txt))
 
 ## Support
 
@@ -46,4 +46,4 @@ If you enjoy Glass Shelf, you can support it with a coffee.
 
 ## License
 
-Theme code is under the [MIT](LICENSE) license. The bundled font is under SIL OFL 1.1.
+Theme code is under the [MIT](LICENSE) license. The bundled font is under SIL OFL 1.1 ([OFL.txt](OFL.txt)).
