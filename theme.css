@@ -3685,13 +3685,14 @@ body.lg-hrule .markdown-rendered :is(h1, h2, h3, h4, h5, h6)::after {
   pointer-events: none;
 }
 
-/* 다음 줄 위 여백은 !important: Obsidian 의 줄 여백 규칙이 덮어써 선이 본문 글자와 겹쳤다 (사용자 지적. 스니펫도 !important 였다) */
-body.lg-hrule .markdown-source-view.mod-cm6 :is(.HyperMD-header-1, .HyperMD-header-2, .HyperMD-header-3, .HyperMD-header-4, .HyperMD-header-5, .HyperMD-header-6) + .cm-line {
+/* 다음 줄 위 여백은 !important: Obsidian 의 줄 여백 규칙이 덮어써 선이 본문 글자와 겹쳤다 (사용자 지적. 스니펫도 !important 였다)
+   제목 바로 다음이 표·콜아웃·임베드처럼 줄(.cm-line)이 아닌 블록(.cm-embed-block)이면 그 블록 위에 긋는다 (사용자 지적: 제목 밑 표에서 선이 안 보였다) */
+body.lg-hrule .markdown-source-view.mod-cm6 :is(.HyperMD-header-1, .HyperMD-header-2, .HyperMD-header-3, .HyperMD-header-4, .HyperMD-header-5, .HyperMD-header-6) + :is(.cm-line, .cm-embed-block) {
   position: relative;
   padding-top: calc(var(--lg-hrule-gap) + var(--lg-hrule-w) + var(--lg-hrule-below)) !important;
 }
 
-body.lg-hrule .markdown-source-view.mod-cm6 :is(.HyperMD-header-1, .HyperMD-header-2, .HyperMD-header-3, .HyperMD-header-4, .HyperMD-header-5, .HyperMD-header-6) + .cm-line::before {
+body.lg-hrule .markdown-source-view.mod-cm6 :is(.HyperMD-header-1, .HyperMD-header-2, .HyperMD-header-3, .HyperMD-header-4, .HyperMD-header-5, .HyperMD-header-6) + :is(.cm-line, .cm-embed-block)::before {
   content: "";
   position: absolute;
   left: 0;
