@@ -4,7 +4,7 @@
 
 A translucent, glassy theme for Obsidian.
 
-> **Requires the Glass Shelf plugin.** This theme is built to be used together with the Glass Shelf plugin. Install and enable both to get the intended look.
+> **Requires the Glass Shelf Companion plugin.** This theme is built to be used together with the Glass Shelf Companion plugin. Install and enable both to get the intended look.
 
 <p align="center">
   <img src="images/light-main.png" width="49%" alt="Light mode">
@@ -20,7 +20,7 @@ A translucent, glassy theme for Obsidian.
 
 ## Companion plugin
 
-The **Glass Shelf plugin** handles button layout, refraction, animation and fine-grained settings. The theme draws the glass; the plugin handles layout and motion.
+The **[Glass Shelf Companion](https://github.com/ummbition/glass-shelf-plugin) plugin** handles button layout, refraction, animation and fine-grained settings. The theme draws the glass; the plugin handles layout and motion.
 
 ## Supported platforms
 
@@ -32,7 +32,7 @@ The **Glass Shelf plugin** handles button layout, refraction, animation and fine
 ## Installation
 
 1. In **Settings → Appearance → Themes → Manage**, search for **Glass Shelf**, then install and enable it.
-2. Install and enable the **Glass Shelf** plugin in **Settings → Community plugins**.
+2. Install and enable the **Glass Shelf Companion** plugin in **Settings → Community plugins**.
 
 ## Credits
 

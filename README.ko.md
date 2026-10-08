@@ -4,7 +4,7 @@
 
 반투명한 유리 질감의 Obsidian 테마입니다.
 
-> **Glass Shelf 플러그인이 필요합니다.** 이 테마는 Glass Shelf 플러그인과 함께 쓰도록 만들었습니다. 테마와 플러그인을 모두 설치하고 켜야 의도한 화면이 완성됩니다.
+> **Glass Shelf Companion 플러그인이 필요합니다.** 이 테마는 Glass Shelf Companion 플러그인과 함께 쓰도록 만들었습니다. 테마와 플러그인을 모두 설치하고 켜야 의도한 화면이 완성됩니다.
 
 <p align="center">
   <img src="images/light-main.png" width="49%" alt="라이트 모드">
@@ -20,7 +20,7 @@
 
 ## 동반 플러그인
 
-**Glass Shelf 플러그인**이 버튼 재배치, 굴절 효과, 애니메이션, 세부 설정을 담당합니다. 테마는 유리 표현을, 플러그인은 배치와 움직임을 맡는 구조입니다.
+**[Glass Shelf Companion](https://github.com/ummbition/glass-shelf-plugin) 플러그인**이 버튼 재배치, 굴절 효과, 애니메이션, 세부 설정을 담당합니다. 테마는 유리 표현을, 플러그인은 배치와 움직임을 맡는 구조입니다.
 
 ## 지원 환경
 
@@ -32,7 +32,7 @@
 ## 설치
 
 1. **설정 → 모양 → 테마 → 관리**에서 **Glass Shelf**를 검색해 설치하고 켭니다.
-2. **설정 → 커뮤니티 플러그인**에서 **Glass Shelf** 플러그인을 설치하고 켭니다.
+2. **설정 → 커뮤니티 플러그인**에서 **Glass Shelf Companion** 플러그인을 설치하고 켭니다.
 
 ## 출처
 
