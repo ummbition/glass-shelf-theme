@@ -11,6 +11,13 @@ A translucent, glassy theme for Obsidian.
   <img src="images/dark-main.png" width="49%" alt="Dark mode">
 </p>
 
+## Theme only vs. with the plugin
+
+The screenshots above show the theme together with the Companion plugin. With the theme alone, the glass looks the same, but the button layout, refraction and animations are not there.
+
+| Theme only | With the Companion plugin |
+|---|---|
+| <img src="images/theme-only-light.png" alt="Theme only"> | <img src="images/light-main.png" alt="With the Companion plugin"> |
 ## Features
 
 - Glassmorphism: panels, menus and popups rendered as blurred glass

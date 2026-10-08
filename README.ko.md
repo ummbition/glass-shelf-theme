@@ -11,6 +11,13 @@
   <img src="images/dark-main.png" width="49%" alt="다크 모드">
 </p>
 
+## 테마만 쓸 때와 비교
+
+위 화면은 Companion 플러그인을 함께 켠 모습입니다. 테마만 켜면 유리 표현은 같고, 버튼 배치와 굴절·애니메이션이 빠집니다.
+
+| 테마만 | Companion 플러그인과 함께 |
+|---|---|
+| <img src="images/theme-only-light.png" alt="테마만"> | <img src="images/light-main.png" alt="플러그인과 함께"> |
 ## 특징
 
 - 패널, 메뉴, 팝업을 흐린 유리로 표현하는 글래스모피즘
