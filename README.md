@@ -1,92 +1,41 @@
-# Obsidian Sample Plugin
+# Glass Shelf (테마)
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+반투명한 유리 질감의 Obsidian 테마입니다.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+> **Glass Shelf 플러그인이 필요합니다.** 이 테마는 Glass Shelf 플러그인과 함께 쓰도록 만들었습니다. 테마와 플러그인을 모두 설치하고 켜야 의도한 화면이 완성됩니다.
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
+<p align="center">
+  <img src="images/light-main.png" width="49%" alt="라이트 모드">
+  <img src="images/dark-main.png" width="49%" alt="다크 모드">
+</p>
 
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open modal (simple)" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and outputs a Notice on click.
-- Registers a global interval which logs 'setInterval' to the console.
+## 특징
 
-## First time developing plugins?
+- 패널, 메뉴, 팝업을 흐린 유리로 표현하는 글래스모피즘
+- 알약 모양 버튼과 곡률이 서서히 바뀌는 둥근 모서리 (Chromium 139 이상)
+- 원티드 산스 기반 글꼴 내장 (별도 설치 불필요)
+- 폴더·문서 아이콘
 
-Quick starting guide for new plugin devs:
+## 동반 플러그인
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `src/main.ts` to `main.js`.
-- Make changes to `src/main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+**Glass Shelf 플러그인**이 버튼 재배치, 굴절 효과, 애니메이션, 세부 설정을 담당합니다. 테마는 유리 표현을, 플러그인은 배치와 움직임을 맡는 구조입니다.
 
-## Releasing new releases
+## 지원 환경
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+- **PC와 안드로이드 환경을 중심으로 제작했습니다.**
+- iPhone·iPad에서는 굴절 효과가 작동하지 않아, 대신 흐림(블러) 처리만 적용됩니다.
+- macOS는 충분히 테스트하지 못해 일부 표현이 어색할 수 있습니다.
+- 둥근 모서리의 곡률 효과는 Chromium 139 이상에서 보입니다.
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+## 설치
 
-## Adding your plugin to the community plugin list
+1. **설정 → 모양 → 테마 → 관리**에서 **Glass Shelf**를 검색해 설치하고 켭니다.
+2. **설정 → 커뮤니티 플러그인**에서 **Glass Shelf** 플러그인을 설치하고 켭니다.
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+## 출처
 
-## How to use
+- 글꼴: [Wanted Sans](https://github.com/wanteddev/wanted-sans)를 줄인 판, SIL Open Font License 1.1
 
-- Clone this repo.
-- Make sure your NodeJS is at least v18 (`node --version`).
-- `npm i` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+## 라이선스
 
-## Manually installing the plugin
-
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
-
-## Improve code quality with eslint
-
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code.
-- This project already has eslint preconfigured, you can invoke a check by running`npm run lint`
-- Together with a custom eslint [plugin](https://github.com/obsidianmd/eslint-plugin) for Obsidan specific code guidelines.
-- A GitHub action is preconfigured to automatically lint every commit on all branches.
-
-## Funding URL
-
-You can include funding URLs where people who use your plugin can financially support it.
-
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
-
-```json
-{
-	"fundingUrl": "https://buymeacoffee.com"
-}
-```
-
-If you have multiple URLs, you can also do:
-
-```json
-{
-	"fundingUrl": {
-		"Buy Me a Coffee": "https://buymeacoffee.com",
-		"GitHub Sponsor": "https://github.com/sponsors",
-		"Patreon": "https://www.patreon.com/"
-	}
-}
-```
-
-## API Documentation
-
-See https://docs.obsidian.md
+테마 코드는 [MIT](LICENSE), 내장 글꼴은 SIL OFL 1.1을 따릅니다.
