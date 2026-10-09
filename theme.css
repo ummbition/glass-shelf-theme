@@ -351,22 +351,22 @@ body.theme-dark,
   --lg-panel-bg: var(--background-secondary);
 }
 
-/* 섞은 유리 (.lg-glass-mix, --lg-glass-t: 0 = 라이트 ~ 1 = 다크. 플러그인이 웹 페이지 대표 색 밝기로 정한다, 사용자 요청):
+/* 섞은 유리 (.lg-glass-mix, --lg-glass-t: 0 = 라이트 ~ 1 = 다크. 플러그인이 웹 페이지 대표 색 밝기로 정한다, 사용자 요청. 값이 없으면 0):
    라이트·다크 둘 중 하나로 바꾸면 중간 밝기 색 위에서 반사광·초승달이 너무 밝거나 어두웠다. 그래서 유리 테두리·하이라이트·호버 값을
    두 세트 사이에서 섞는다. 그림자는 두 세트의 겹을 모두 두고 진하기만 비율대로 나눈다 */
 .lg-glass-mix {
-  --lg-u: calc(1 - var(--lg-glass-t));
-  --lg-track-a: calc(0.09 * var(--lg-u) + 0.07 * var(--lg-glass-t));
-  --lg-select-a: calc(0.07 * var(--lg-u) + 0.13 * var(--lg-glass-t));
-  --lg-hover-a: calc(0.045 * var(--lg-u) + 0.07 * var(--lg-glass-t));
-  --lg-tab-hover-a: calc(0.08 * var(--lg-u) + 0.12 * var(--lg-glass-t));
-  --lg-tab-btn-hover-a: calc(0.1 * var(--lg-u) + 0.15 * var(--lg-glass-t));
-  --lg-panel-select-a: calc(0.12 * var(--lg-u) + 0.16 * var(--lg-glass-t));
-  --lg-edge: color-mix(in srgb, rgb(0 0 0 / 0.07), rgb(255 255 255 / 0.09) calc(var(--lg-glass-t) * 100%));
-  --lg-sep: color-mix(in srgb, rgb(0 0 0 / 0.18), rgb(255 255 255 / 0.12) calc(var(--lg-glass-t) * 100%));
-  --lg-divider: color-mix(in srgb, rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.08) calc(var(--lg-glass-t) * 100%));
-  --lg-slab-edge: rgb(255 255 255 / calc(0.7 * var(--lg-u) + 0.12 * var(--lg-glass-t)));
-  --lg-cres-a: calc(0.34 * var(--lg-u) + 0.7 * var(--lg-glass-t));
+  --lg-u: calc(1 - var(--lg-glass-t, 0));
+  --lg-track-a: calc(0.09 * var(--lg-u) + 0.07 * var(--lg-glass-t, 0));
+  --lg-select-a: calc(0.07 * var(--lg-u) + 0.13 * var(--lg-glass-t, 0));
+  --lg-hover-a: calc(0.045 * var(--lg-u) + 0.07 * var(--lg-glass-t, 0));
+  --lg-tab-hover-a: calc(0.08 * var(--lg-u) + 0.12 * var(--lg-glass-t, 0));
+  --lg-tab-btn-hover-a: calc(0.1 * var(--lg-u) + 0.15 * var(--lg-glass-t, 0));
+  --lg-panel-select-a: calc(0.12 * var(--lg-u) + 0.16 * var(--lg-glass-t, 0));
+  --lg-edge: color-mix(in srgb, rgb(0 0 0 / 0.07), rgb(255 255 255 / 0.09) calc(var(--lg-glass-t, 0) * 100%));
+  --lg-sep: color-mix(in srgb, rgb(0 0 0 / 0.18), rgb(255 255 255 / 0.12) calc(var(--lg-glass-t, 0) * 100%));
+  --lg-divider: color-mix(in srgb, rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.08) calc(var(--lg-glass-t, 0) * 100%));
+  --lg-slab-edge: rgb(255 255 255 / calc(0.7 * var(--lg-u) + 0.12 * var(--lg-glass-t, 0)));
+  --lg-cres-a: calc(0.34 * var(--lg-u) + 0.7 * var(--lg-glass-t, 0));
   --lg-ol-w: calc(0.7px * var(--lg-u));
   --lg-ol-a: calc(0.06 * var(--lg-u));
   --lg-rim-out-plain:
@@ -374,25 +374,25 @@ body.theme-dark,
     inset var(--lg-cres-x) 0 0 -0.5px rgb(0 0 0 / var(--lg-cres-a)),
     inset calc(var(--lg-cres-x) * -1) 0 0 -0.5px rgb(0 0 0 / var(--lg-cres-a));
   --lg-rim-in-plain:
-    inset 0 var(--lg-hi-y) 1px calc(1px - var(--lg-hi-y)) rgb(255 255 255 / calc(0.7 * var(--lg-u) + 0.2 * var(--lg-glass-t))),
-    inset 0 calc(var(--lg-hi-y) * -1) 1px calc(1px - var(--lg-hi-y)) rgb(255 255 255 / calc(0.7 * var(--lg-u) + 0.14 * var(--lg-glass-t)));
+    inset 0 var(--lg-hi-y) 1px calc(1px - var(--lg-hi-y)) rgb(255 255 255 / calc(0.7 * var(--lg-u) + 0.2 * var(--lg-glass-t, 0))),
+    inset 0 calc(var(--lg-hi-y) * -1) 1px calc(1px - var(--lg-hi-y)) rgb(255 255 255 / calc(0.7 * var(--lg-u) + 0.14 * var(--lg-glass-t, 0)));
   --lg-shadow-sm:
-    0 calc(1px * var(--lg-u)) calc(2px * var(--lg-u)) calc(1px * var(--lg-glass-t)) rgb(0 0 0 / calc(0.06 * var(--lg-u) + 0.28 * var(--lg-glass-t))),
-    0 4px calc(16px * var(--lg-u) + 14px * var(--lg-glass-t)) rgb(0 0 0 / calc(0.075 * var(--lg-u) + 0.3 * var(--lg-glass-t)));
-  --lg-hover-base: color-mix(in srgb, rgb(118 118 128 / 0.3), rgb(255 255 255 / 0.16) calc(var(--lg-glass-t) * 100%));
+    0 calc(1px * var(--lg-u)) calc(2px * var(--lg-u)) calc(1px * var(--lg-glass-t, 0)) rgb(0 0 0 / calc(0.06 * var(--lg-u) + 0.28 * var(--lg-glass-t, 0))),
+    0 4px calc(16px * var(--lg-u) + 14px * var(--lg-glass-t, 0)) rgb(0 0 0 / calc(0.075 * var(--lg-u) + 0.3 * var(--lg-glass-t, 0)));
+  --lg-hover-base: color-mix(in srgb, rgb(118 118 128 / 0.3), rgb(255 255 255 / 0.16) calc(var(--lg-glass-t, 0) * 100%));
   --lg-hover-rim:
-    0 0 0 0.5px color-mix(in srgb, rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.2) calc(var(--lg-glass-t) * 100%)),
+    0 0 0 0.5px color-mix(in srgb, rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.2) calc(var(--lg-glass-t, 0) * 100%)),
     -1px 0 0 -0.5px rgb(0 0 0 / calc(0.08 * var(--lg-u))),
     1px 0 0 -0.5px rgb(0 0 0 / calc(0.08 * var(--lg-u))),
-    inset 0 2.5px 1px -2px rgb(255 255 255 / calc(0.85 * var(--lg-u) + 0.35 * var(--lg-glass-t))),
-    inset 0 -2.5px 1px -2px rgb(255 255 255 / calc(0.6 * var(--lg-u) + 0.12 * var(--lg-glass-t))),
-    0 0 0 1px rgb(0 0 0 / calc(0.25 * var(--lg-glass-t))),
-    0 2px 8px rgb(0 0 0 / calc(0.35 * var(--lg-glass-t)));
+    inset 0 2.5px 1px -2px rgb(255 255 255 / calc(0.85 * var(--lg-u) + 0.35 * var(--lg-glass-t, 0))),
+    inset 0 -2.5px 1px -2px rgb(255 255 255 / calc(0.6 * var(--lg-u) + 0.12 * var(--lg-glass-t, 0))),
+    0 0 0 1px rgb(0 0 0 / calc(0.25 * var(--lg-glass-t, 0))),
+    0 2px 8px rgb(0 0 0 / calc(0.35 * var(--lg-glass-t, 0)));
   --lg-ripple: radial-gradient(circle,
-    rgb(255 255 255 / calc(var(--lg-u) + 0.8 * var(--lg-glass-t))) 0%,
-    rgb(255 255 255 / calc(var(--lg-u) + 0.55 * var(--lg-glass-t))) calc(40% * var(--lg-u) + 30% * var(--lg-glass-t)),
-    rgb(255 255 255 / calc(0.8 * var(--lg-u) + 0.25 * var(--lg-glass-t))) calc(60% * var(--lg-u) + 55% * var(--lg-glass-t)),
-    rgb(255 255 255 / 0) calc(80% * var(--lg-u) + 75% * var(--lg-glass-t)));
+    rgb(255 255 255 / calc(var(--lg-u) + 0.8 * var(--lg-glass-t, 0))) 0%,
+    rgb(255 255 255 / calc(var(--lg-u) + 0.55 * var(--lg-glass-t, 0))) calc(40% * var(--lg-u) + 30% * var(--lg-glass-t, 0)),
+    rgb(255 255 255 / calc(0.8 * var(--lg-u) + 0.25 * var(--lg-glass-t, 0))) calc(60% * var(--lg-u) + 55% * var(--lg-glass-t, 0)),
+    rgb(255 255 255 / 0) calc(80% * var(--lg-u) + 75% * var(--lg-glass-t, 0)));
 }
 
 /* 세트를 바꾼 자리(.lg-glass-light·.lg-glass-dark·.lg-glass-mix): 다른 값에서 만든 값(var() 를 쓴 값)은 선언한 요소에서 풀려 물려오므로 다시 푼다 */
@@ -983,7 +983,7 @@ body.lg-wc-compact.mod-linux {
 }
 
 .is-hidden-frameless:not(.is-fullscreen) .workspace-tabs.mod-top-left-space .workspace-tab-header-container:not(#lg) {
-  padding-left: calc(var(--lg-gap) + var(--frame-left-space));
+  padding-left: calc(var(--lg-gap) + var(--frame-left-space, 0px));
 }
 
 .workspace-tab-header-container > .sidebar-toggle-button {
@@ -3489,9 +3489,8 @@ body:not(.is-mobile) .workspace-sidedock-vault-profile .workspace-drawer-vault-s
   background-color: var(--lg-hover-glass);
   background-image: var(--lg-hover-sheen);
   box-shadow: var(--lg-hover-rim);
-  /* 흐림 없이 항상 맑게: 굴절·채도·밝기만 */
-  -webkit-backdrop-filter: var(--lg-refract-h,) var(--lg-tone) var(--lg-bright-h,);
-  backdrop-filter: var(--lg-refract-h,) var(--lg-tone) var(--lg-bright-h,);
+  /* 뒤 필터(굴절·채도·밝기, 흐림 없음)는 보일 때(호버)만 건다 (최적화, 검토 지적): 평소엔 투명한데도 필터를 달고 있어
+     앱 전체 아이콘 버튼마다 필터 층이 생겼다. 아래 @media (hover: hover) 의 호버 규칙에서 건다 */
   opacity: 0;
   transition:
     opacity 180ms ease-out,
@@ -3554,12 +3553,11 @@ body:not(.is-mobile) .workspace-sidedock-vault-profile .workspace-drawer-vault-s
     transform 460ms var(--lg-spring);
 }
 
-/* 모바일: 튕기는 곡선(--lg-spring)을 쓰는 전환을 모두 끈다. 값을 비워(initial) 이 곡선을 쓰는 transition 선언 전체가 무효가 되게 한다
-   (호버 유리 층·기호의 커서 끌림, 할 일 체크박스의 끌림·커지기·빛남 전환). 모바일은 커서 끌림이 없어 쓰이지 않는다.
-   휴대폰 커뮤니티 창에서 정렬·토글을 누를 때 위쪽 제목·X·정렬·토글이 깜빡였다 (사용자 지적). 테마 CSS 를 선언 단위로 반씩 꺼 보는 시험에서
-   --lg-spring 을 뺐을 때만 사라졌다(사용자 확인). 그 상태를 그대로 옮긴다. 이 전환들과 깜빡임의 관계는 추정이다 */
-body.is-mobile {
-  --lg-spring: initial;
+/* 모바일: 아이콘 기호(svg)에 전환을 걸지 않는다. 모바일은 커서 끌림이 없고, 기호의 흐려짐 전환이 버튼을 누를 때마다 다시 그리게 해
+   휴대폰 커뮤니티 창에서 정렬 버튼을 누르면 창 머리(제목·X)가 몇 프레임 사라졌다 (실기기 녹화로 확인: 정렬 3번에 6~8프레임 → 0, 원인은 추정).
+   예전엔 --lg-spring 을 비워 같은 효과를 냈는데 체크박스·호버 유리 전환까지 같이 꺼졌다 */
+body.is-mobile .clickable-icon:not(.lg-tab-menu):not(.workspace-tab-header-inner-close-button) > svg:not(#lg) {
+  transition: none;
 }
 
 /* 오른쪽 패널 토글은 Obsidian 이 버튼을 좌우로 뒤집어 그리므로(scale(-1, 1)), 끌려가는 방향의 가로 값도 뒤집어야 커서를 따라간다 */
@@ -3584,6 +3582,8 @@ body .sidebar-toggle-button.mod-right .clickable-icon:not(#lg):not(.lg-tab-menu)
   .mod-right-split .workspace-tab-header-container .workspace-tab-header:not(.is-active):hover::before,
   .titlebar-button-container.mod-right .titlebar-button:hover::before {
     opacity: 1;
+    -webkit-backdrop-filter: var(--lg-refract-h,) var(--lg-tone) var(--lg-bright-h,);
+    backdrop-filter: var(--lg-refract-h,) var(--lg-tone) var(--lg-bright-h,);
   }
 
   /* 기본 회색 호버 배경 끄기 (유리가 대신한다) */
@@ -3968,18 +3968,19 @@ body.is-phone button:not(.clickable-icon) {
 
 /* 휴대폰 설정: Obsidian 은 글자 칸이 아닌 설정을 두 줄(이름 위, 조작부 아래 꽉 차게)로 놓아, 언어처럼 드롭다운인 설정은 이름과 드롭다운이
    다른 줄에 있었다. 드롭다운은 "글자 + 화살표 원" 모양이라 한 줄에 둔다 (사용자 요청).
-   드롭다운 옆에 버튼도 있는 설정(테마: 드롭다운 + 관리)은 Obsidian 배치 그대로 이름 아래 한 줄에 둔다 (사용자 요청) */
-body.is-phone .modal .setting-item:has(> .setting-item-control > .dropdown):not(:has(> .setting-item-control > button)):not(#lg) {
+   드롭다운 옆에 버튼도 있는 설정(테마: 드롭다운 + 관리)은 Obsidian 배치 그대로 이름 아래 한 줄에 둔다 (사용자 요청).
+   숨은 버튼은 세지 않는다: 언어는 바꾼 뒤에만 보이는 재시작 버튼이 숨어 있어 두 줄로 남았다 (사용자 지적) */
+body.is-phone .modal .setting-item:has(> .setting-item-control > .dropdown):not(:has(> .setting-item-control > button:not([style*="display: none"]))):not(#lg) {
   flex-direction: row;
   align-items: center;
 }
 
-body.is-phone .modal .setting-item:has(> .setting-item-control > .dropdown):not(:has(> .setting-item-control > button)) > .setting-item-control:not(#lg) {
+body.is-phone .modal .setting-item:has(> .setting-item-control > .dropdown):not(:has(> .setting-item-control > button:not([style*="display: none"]))) > .setting-item-control:not(#lg) {
   flex: 0 1 auto;
   width: auto;
 }
 
-body.is-phone .modal .setting-item:has(> .setting-item-control > .dropdown):not(:has(> .setting-item-control > button)) > .setting-item-control > .dropdown:not(#lg) {
+body.is-phone .modal .setting-item:has(> .setting-item-control > .dropdown):not(:has(> .setting-item-control > button:not([style*="display: none"]))) > .setting-item-control > .dropdown:not(#lg) {
   width: auto;
 }
 
@@ -4879,8 +4880,7 @@ input[type=checkbox].task-list-item-checkbox:not(#lg)::before {
   border-radius: 50%;
   background-color: var(--lg-hover-glass);
   box-shadow: var(--lg-hover-rim);
-  -webkit-backdrop-filter: var(--lg-refract-h,) var(--lg-tone);
-  backdrop-filter: var(--lg-refract-h,) var(--lg-tone);
+  /* 뒤 필터는 보일 때(호버)만 건다 (최적화, 검토 지적). 아래 호버 규칙 */
   opacity: 0;
   pointer-events: none;
   /* 다른 호버 유리처럼 커서 쪽으로 끌려간다 (--lg-mx/--lg-my 는 플러그인) */
@@ -4901,6 +4901,8 @@ input[type=checkbox].task-list-item-checkbox:checked:not(#lg)::before {
   input[type=checkbox].task-list-item-checkbox:not(:checked):not(#lg):hover::before,
   input[type=checkbox].task-list-item-checkbox.lg-task-hov:not(:checked):not(#lg)::before {
     opacity: 1;
+    -webkit-backdrop-filter: var(--lg-refract-h,) var(--lg-tone);
+    backdrop-filter: var(--lg-refract-h,) var(--lg-tone);
   }
 
   /* .lg-task-hov: 체크를 바꿔 새로 그려진 체크박스. 마우스가 움직이기 전까지 :hover 가 아니어서 플러그인이 호버 모양을 붙여 둔다 */
@@ -5012,10 +5014,9 @@ body.is-phone.auto-full-screen {
   --view-top-spacing-markdown: calc(var(--safe-area-inset-top) + var(--lg-safe-gap) + var(--view-header-height) + 16px);
 }
 
-/* 서랍 안: 머리(위)와 보기 전환 알약(아래)도 같은 만큼 띄운다 */
+/* 서랍 안: 머리(위)를 같은 만큼 띄운다. 아래 여백은 0 이다(보관함 줄이 서랍 맨 아래 줄에 겹친다. 예전 아래 여백 식은 늘 덮여 뺐다, 검토 지적) */
 body.is-phone .workspace-drawer-inner:not(#lg) {
   padding-top: max(calc(var(--safe-area-inset-top) + var(--lg-safe-gap)), var(--size-4-2));
-  padding-bottom: calc(max(calc(var(--safe-area-inset-bottom) + var(--lg-safe-gap)), var(--size-4-4)) - var(--keyboard-height));
 }
 
 /* ---- 유리 ---- */
@@ -5296,8 +5297,10 @@ body.is-mobile .workspace-drawer .nav-files-container:not(#lg) {
    알약을 서랍 아래에 겹쳐 두고, 목록은 서랍 끝까지 내려 알약 뒤로 지나가게 한다.
    그라데이션은 목록 맨 아래에서 알약 위까지 이어진다 */
 body.is-phone {
+  /* 알약과 아래 보관함 줄 사이: 기본 8px 에 버튼 사이 간격(8px)만큼 더 (사용자 요청) */
+  --lg-dtab-below: calc(var(--size-4-2) * 2);
   /* 알약 자리: 알약 높이 + 위아래 여백 */
-  --lg-dtab-area: calc(var(--lg-dtab-h) + var(--lg-pad) * 2 + var(--size-4-2) * 2);
+  --lg-dtab-area: calc(var(--lg-dtab-h) + var(--lg-pad) * 2 + var(--size-4-2) + var(--lg-dtab-below));
 }
 
 /* 서랍 안을 세 줄 격자로 겹친다 (Obsidian 구조: 서랍 안 > 보관함 줄(머리), 탭 칸 > 지금 보기 칸 > [보기 전환, 목록]).
@@ -5327,7 +5330,7 @@ body.is-phone .workspace-drawer-tab-options:not(#lg):not(#lg) {
   grid-row: 2;
   grid-column: 1;
   z-index: 3;
-  margin: var(--size-4-2) var(--size-4-3);
+  margin: var(--size-4-2) var(--size-4-3) var(--lg-dtab-below);
   pointer-events: none;
 }
 
@@ -5726,8 +5729,10 @@ body.is-phone .menu:not(#lg) {
   background-color: color-mix(in srgb, var(--background-primary) 35%, transparent);
   background-image: var(--lg-sheen);
   box-shadow: var(--lg-rim-out), var(--lg-rim-in), var(--lg-menu-shadow);
-  -webkit-backdrop-filter: blur(24px) var(--lg-menu-tone);
-  backdrop-filter: blur(24px) var(--lg-menu-tone);
+  /* 흐림 반지름은 공용 메뉴 흐림(--lg-menu-blur, 약 3.2px)의 4배(약 13px). 예전 24px 고정값은 휴대폰에서 가장 무거운 흐림이었다 (최적화, 검토 지적).
+     시트는 넓고 채움이 옅어(35%) 공용 값 그대로면 뒤 글자가 너무 또렷하다 */
+  -webkit-backdrop-filter: blur(calc(var(--lg-menu-blur) * 4)) var(--lg-menu-tone);
+  backdrop-filter: blur(calc(var(--lg-menu-blur) * 4)) var(--lg-menu-tone);
 }
 
 /* 패널 목록 글자색: Obsidian 기본은 흐린 회색(--text-muted)이라, 본문 글자색과 같게 (사용자 요청) */
@@ -6086,6 +6091,7 @@ body {
   --interactive-normal: var(--interactive-accent);
   --interactive-hover: var(--interactive-accent-hover);
   --text-color: var(--text-on-accent);
+  color: var(--text-on-accent); /* --text-color 만으로는 글자색이 바뀌지 않는다 (검토 지적) */
 }
 
 /* 칸반 카드의 체크박스는 설정과 상관없이 늘 링 모양 (사용자 요청). 켜고 끄는 애니메이션도 플러그인이 링 모양으로 건다 */
@@ -6522,7 +6528,9 @@ body.is-phone:not(.lg-ui) .workspace-drawer .nav-header .nav-buttons-container:n
   top: auto;
   left: 0;
   right: 0;
-  bottom: calc(var(--lg-dtab-h) + var(--lg-pad) * 2 + var(--size-4-2) + 8px);
+  /* 보관함 줄(--lg-dhead) 위에 보기 전환 알약, 그 위 8px (보관함 줄 높이가 빠져 알약과 겹칠 수 있었다, 검토 지적) */
+  /* 휴대폰에서 재 보니 보관함 줄 어림값(--lg-dhead)으로는 알약에 딱 붙어, 8px 을 더한다 (실기기 확인) */
+  bottom: calc(var(--lg-dhead) + var(--lg-dtab-h) + var(--lg-pad) * 2 + var(--lg-dtab-below) + 16px);
   width: fit-content;
   margin-inline: auto;
   border-radius: 999px;
@@ -6531,20 +6539,20 @@ body.is-phone:not(.lg-ui) .workspace-drawer .nav-header .nav-buttons-container:n
 
 /* 목록 끝이 버튼 줄 위까지 올라올 수 있게 아래 여백을 그만큼 더 준다. 아래 그라데이션도 버튼 줄까지 덮게 늘린다 */
 body.is-phone:not(.lg-ui) .workspace-drawer .workspace-leaf-content > .nav-header ~ :last-child:not(#lg):not(#lg) {
-  padding-bottom: calc(var(--lg-dtab-area) + var(--size-4-2) + var(--lg-pnav-h) + 8px);
+  /* 기본 규칙(알약 자리 + 보관함 줄)을 덮어쓰므로 보관함 줄 높이(--lg-dhead)도 넣는다 (빠져 있어 목록 끝이 보관함 줄 밑에 숨었다, 검토 지적) */
+  padding-bottom: calc(var(--lg-dtab-area) + var(--size-4-2) + var(--lg-dhead) + var(--lg-pnav-h) + 8px);
 }
 
 /* =========================================================
    글꼴: Glass Shelf Sans = Wanted Sans 가변(굵기 400~1000)을 줄인 판. 이 파일에 base64 로 넣었다.
    - 한글은 자주 쓰는 2,350자(KS X 1001)만 남기고, 영문·숫자·기호·자모는 그대로 (전체 1.29MB → 약 370KB)
-   - 고친 판이라 OFL 3항에 따라 원래 이름(Reserved Font Name "Wanted Sans Variable")을 쓰지 않고 글꼴 안의 이름을 바꿨다
-   원본:
-   Copyright (c) 2024 Wanted Lab, Inc., with Reserved Font Name Wanted Sans Variable.
-   https://github.com/wanteddev/wanted-sans
-   
+   - 고친 판이라 원본과 구분되게 글꼴 안의 이름을 바꿨다 (원본 OFL.txt 에는 예약 이름(Reserved Font Name)이 없다)
+   원본 (원본 저장소·이 테마의 OFL.txt 와 같은 표기):
+   Copyright 2024 The Wanted Sans Project Authors (https://github.com/wanteddev/wanted-sans)
+
    This Font Software is licensed under the SIL Open Font License, Version 1.1.
-   This license is copied below, and is also available with a FAQ at:
-   http://scripts.sil.org/OFL
+   The full license text is in OFL.txt distributed with this theme, and is also available with a FAQ at:
+   https://scripts.sil.org/OFL
    ========================================================= */
 @font-face {
   font-family: "Glass Shelf Sans";
