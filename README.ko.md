@@ -18,6 +18,8 @@
 | 테마만 | Companion 플러그인과 함께 |
 |---|---|
 | <img src="images/theme-only-light.png" alt="테마만"> | <img src="images/light-main.png" alt="플러그인과 함께"> |
+| <img src="images/mobile-theme-only-light.png" width="240" alt="모바일, 테마만"> | <img src="images/mobile-light.png" width="240" alt="모바일, 플러그인과 함께"> |
+
 ## 특징
 
 - 패널, 메뉴, 팝업을 흐린 유리로 표현하는 글래스모피즘

@@ -18,6 +18,8 @@ The screenshots above show the theme together with the Companion plugin. With th
 | Theme only | With the Companion plugin |
 |---|---|
 | <img src="images/theme-only-light.png" alt="Theme only"> | <img src="images/light-main.png" alt="With the Companion plugin"> |
+| <img src="images/mobile-theme-only-light.png" width="240" alt="Mobile, theme only"> | <img src="images/mobile-light.png" width="240" alt="Mobile, with the Companion plugin"> |
+
 ## Features
 
 - Glassmorphism: panels, menus and popups rendered as blurred glass
