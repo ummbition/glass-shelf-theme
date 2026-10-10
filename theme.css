@@ -158,6 +158,10 @@ body {
   --tab-outline-color: transparent;
   --header-height: calc(var(--lg-pill-h) + var(--lg-gap) * 2);
   --ribbon-width: calc(var(--lg-pill-h) + var(--lg-gap) * 2);
+  /* macOS 신호등(창 닫기·최소화·최대화) 세로 자리: Obsidian 은 위에서 이 높이 띠의 가운데에 둔다(기본 40 → 가운데 20px).
+     탭 줄이 54px(알약 34 + 위아래 10)이라 기본값이면 신호등이 탭 알약보다 7px 위에 떴다(추정, Obsidian 코드로 계산). 탭 줄 높이와 같게 둔다.
+     Obsidian 이 숫자만 읽으므로 계산식 대신 값을 적는다. 알약 높이·간격을 바꾸면 같이 바꾼다 */
+  --traffic-lights-offset-y: 54px;
   --nav-item-background-active: color-mix(in srgb, var(--lg-hl) calc(var(--lg-select-a) * 100%), transparent);
   --nav-item-background-hover: color-mix(in srgb, var(--lg-hl) calc(var(--lg-hover-a) * 100%), transparent);
 
@@ -1359,8 +1363,30 @@ body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tab-header-co
   display: none;
 }
 
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs:not(.lg-one) > .workspace-tab-header-container > .lg-nav-more:not(#lg):not(#lg) {
+body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs:not(.lg-one):not(.lg-nav-fold) > .workspace-tab-header-container > .lg-nav-more:not(#lg):not(#lg) {
   display: none;
+}
+
+/* 버튼 줄이 탭 줄 폭에 다 들어가지 않으면(패널을 줄이거나 창이 작을 때) 줄을 숨기고 ··· 하나로 묶는다 (사용자 요청).
+   들어가는지는 플러그인이 재서 .lg-nav-fold 로 알린다 */
+body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs.lg-nav-fold > .workspace-tab-header-container > .lg-nav-row:not(#lg):not(#lg):not(#lg) {
+  display: none;
+}
+
+/* 아래 묶음(맨 위가 아닌 탭 묶음)은 둘째 줄을 그대로 두고 ··· 을 탭 줄 밑으로 내린다 (사용자 요청).
+   탭 줄이 한 줄을 다 차지하게 해 ··· 이 둘째 줄로 넘어가게 하고, 패널 편집창 쪽 끝에 둔다(첫 줄 ··· 과 같은 쪽) */
+body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs:not(.mod-top).lg-nav-two.lg-nav-fold:not(.lg-one) > .workspace-tab-header-container > .workspace-tab-header-container-inner:not(#lg):not(#lg) {
+  flex-basis: 100%;
+}
+
+body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs:not(.mod-top).lg-nav-two.lg-nav-fold:not(.lg-one) > .workspace-tab-header-container > .lg-nav-more:not(#lg):not(#lg):not(#lg) {
+  order: 10;
+  margin-inline-start: auto;
+}
+
+body.lg-tab-wide .mod-right-split .workspace-tabs:not(.mod-top).lg-nav-two.lg-nav-fold:not(.lg-one) > .workspace-tab-header-container > .lg-nav-more:not(#lg):not(#lg):not(#lg) {
+  margin-inline-start: 0;
+  margin-inline-end: auto;
 }
 
 /* 왼쪽 패널 첫 줄: [버튼 줄] [닫기] */
@@ -2777,6 +2803,12 @@ body.is-tablet .mod-root .workspace-tab-header-container > .sidebar-toggle-butto
   min-width: var(--lg-btn);
   height: var(--lg-btn);
   align-self: center;
+}
+
+/* 데스크톱: 오른쪽 패널을 닫았을 때 탭 줄 끝의 패널 열기 버튼. Obsidian 이 오른쪽에 8px 안쪽 여백을 줘 창 제어 알약과의 거리가
+   버튼 사이 간격(--lg-gap)보다 8px 넓었다 (사용자 요청, 재 보니 18px). 여백을 없애 간격과 같게 한다 */
+body:not(.is-mobile) .mod-root .workspace-tab-header-container > .sidebar-toggle-button.mod-right:not(#lg):not(#lg) {
+  padding-right: 0;
 }
 
 /* 기본 탭의 곡선 장식 제거 (사이드바 탭의 ::before 는 호버 유리가 쓴다) */
