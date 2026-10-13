@@ -37,7 +37,7 @@ The **[Glass Shelf Companion](https://github.com/ummbition/glass-shelf-plugin) p
 
 - **Built mainly for desktop (Windows) and Android.**
 - On iPhone and iPad, refraction does not work, so only blur is applied.
-- macOS has not been tested thoroughly, so some details may look off.
+- On macOS, we recommend leaving Obsidian's Translucent window setting (Settings → Appearance → Advanced) off. With it on, translucent areas get painted over again each time they redraw and gradually turn darker. This is a limit on the Obsidian and Electron side that the theme and plugin cannot fix.
 - The smooth corner curvature is visible on Chromium 139 or later.
 
 ## Installation
