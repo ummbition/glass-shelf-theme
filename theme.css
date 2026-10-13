@@ -175,6 +175,13 @@ body {
   --icon-xl-stroke-width: 1.6px;
 }
 
+/* 가는 선 두께: 1px 을 화면 픽셀 배수로 반올림한 값 (--lg-dpx: 플러그인이 body 에 주는 화면 한 픽셀 길이, 없으면 1px).
+   125% 배율에서 1px 은 1.25픽셀이라 선이 놓인 높이에 따라 1픽셀·2픽셀로 그려져 줄마다 두께가 달라 보였다 (사용자 지적).
+   --lg-dpx 가 body 에 있으므로 body 에서 정한다 */
+body {
+  --lg-px: round(1px, var(--lg-dpx, 1px));
+}
+
 /* ---------- 토큰 (라이트): 다크와 다른 것만. 라이트 전용 값은 모두 여기 있다 ----------
    .lg-glass-light: 다크 모드에서도 이 자리만 라이트 유리로 (플러그인이 붙인다. 밝은 웹 페이지 대표 색으로 칠한 탭 줄) */
 body,
@@ -1023,13 +1030,13 @@ body.lg-wc-compact.mod-linux {
 
 .workspace-split.mod-left-split {
   box-shadow:
-    inset -1px 0 0 var(--lg-edge),
+    inset calc(var(--lg-px) * -1) 0 0 var(--lg-edge),
     var(--lg-panel-shadow-l);
 }
 
 .workspace-split.mod-right-split {
   box-shadow:
-    inset 1px 0 0 var(--lg-edge),
+    inset var(--lg-px) 0 0 var(--lg-edge),
     var(--lg-panel-shadow-r);
 }
 
@@ -1066,7 +1073,7 @@ body.lg-wc-compact.mod-linux {
   left: 16px;
   right: 16px;
   bottom: 0;
-  height: 1px;
+  height: var(--lg-px);
   background-color: var(--lg-divider);
   pointer-events: none;
 }
@@ -2439,8 +2446,8 @@ body.lg-vib-nudge.is-translucent .app-container:not(#lg):not(#lg) {
   -webkit-backdrop-filter: blur(calc(var(--lg-blur-k) * 22px)) var(--lg-tone);
   backdrop-filter: blur(calc(var(--lg-blur-k) * 22px)) var(--lg-tone);
   box-shadow:
-    inset 0 -1px 0 var(--lg-slab-edge),
-    0 1px 0 color-mix(in srgb, var(--lg-hl) 8%, transparent),
+    inset 0 calc(var(--lg-px) * -1) 0 var(--lg-slab-edge),
+    0 var(--lg-px) 0 color-mix(in srgb, var(--lg-hl) 8%, transparent),
     0 6px 24px rgb(0 0 0 / 0.06);
   transition: background-color 300ms ease;
 }
@@ -3137,9 +3144,10 @@ body .suggestion-container.lg-web-sugg.lg-sugg-in:not(#lg) .suggestion-item.is-s
   position: absolute;
   top: calc(50% - 9px);
   bottom: auto;
-  /* 두께는 정수 px: 1.5px 처럼 화면 픽셀로 나눠떨어지지 않으면 줄마다 1·2픽셀로 반올림돼 굵기가 달라 보였다 (사용자 지적) */
-  inset-inline-start: calc(var(--lg-tab-gap) / -2 - 1px);
-  width: 2px;
+  /* 두께는 화면 픽셀 배수(--lg-dpx): 화면 픽셀로 나눠떨어지지 않으면 탭마다 굵기가 달라 보였다 (사용자 지적). 자리도 같은 배수로 맞춘다 */
+  --lg-sep-w: round(2px, var(--lg-dpx, 1px));
+  inset-inline-start: round(calc(var(--lg-tab-gap) / -2 - var(--lg-sep-w) / 2), var(--lg-dpx, 1px));
+  width: var(--lg-sep-w);
   height: 18px;
   border-radius: 1px;
   box-shadow: none;
@@ -4900,7 +4908,7 @@ body .suggestion-container.mod-search-suggestion:not(#lg) .suggestion-item.mod-g
   top: 0;
   left: 12px;
   right: 12px;
-  height: 1px;
+  height: var(--lg-px);
   background-color: var(--background-modifier-border);
   pointer-events: none;
 }
@@ -6114,8 +6122,8 @@ body.is-phone .workspace-drawer-header:not(#lg)::before {
   -webkit-backdrop-filter: blur(calc(var(--lg-blur-k) * 22px)) var(--lg-tone);
   backdrop-filter: blur(calc(var(--lg-blur-k) * 22px)) var(--lg-tone);
   box-shadow:
-    inset 0 1px 0 var(--lg-slab-edge),
-    0 -1px 0 color-mix(in srgb, var(--lg-hl) 8%, transparent);
+    inset 0 var(--lg-px) 0 var(--lg-slab-edge),
+    0 calc(var(--lg-px) * -1) 0 color-mix(in srgb, var(--lg-hl) 8%, transparent);
 }
 
 /* 휴대폰 서랍은 화면 전체 폭으로 (사용자 요청). Obsidian 은 폭 380px 이하 화면에서만 전체 폭이다.
@@ -7226,8 +7234,8 @@ body:not(.lg-ui):not(.is-phone) .mod-root .workspace-leaf-content[data-type="mar
 
 body:not(.lg-ui):not(.is-phone) .mod-root .workspace-leaf-content[data-type="markdown"] > .view-header:not(#lg)::before {
   box-shadow:
-    inset 0 -1px 0 var(--lg-slab-edge),
-    0 1px 0 color-mix(in srgb, var(--lg-hl) 8%, transparent),
+    inset 0 calc(var(--lg-px) * -1) 0 var(--lg-slab-edge),
+    0 var(--lg-px) 0 color-mix(in srgb, var(--lg-hl) 8%, transparent),
     0 6px 24px rgb(0 0 0 / 0.06);
 }
 
