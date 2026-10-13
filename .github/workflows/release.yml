@@ -32,7 +32,12 @@ jobs:
             theme.css
             manifest.json
 
+      # 릴리스 설명은 태그 메시지 전체로 만든다. --notes-from-tag 는 첫 줄과 서명만 남기고 본문 문단을 빼먹었다 (2.0.0)
       - name: Create release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" theme.css manifest.json --title "$GITHUB_REF_NAME" --notes-from-tag
+        run: |
+          git fetch --force --depth=1 origin "+refs/tags/$GITHUB_REF_NAME:refs/tags/$GITHUB_REF_NAME"
+          git for-each-ref --format='%(contents)' "refs/tags/$GITHUB_REF_NAME" > notes.md
+          cat notes.md
+          gh release create "$GITHUB_REF_NAME" theme.css manifest.json --title "$GITHUB_REF_NAME" --notes-file notes.md
