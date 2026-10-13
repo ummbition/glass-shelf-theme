@@ -4,7 +4,9 @@
 
 반투명한 유리 질감의 Obsidian 테마입니다.
 
-> **Glass Shelf Companion 플러그인이 필요합니다.** 이 테마는 Glass Shelf Companion 플러그인과 함께 쓰도록 만들었습니다. 테마와 플러그인을 모두 설치하고 켜야 의도한 화면이 완성됩니다.
+> [!IMPORTANT]
+> ### Glass Shelf Companion 플러그인이 필요합니다
+> 이 테마는 Glass Shelf Companion 플러그인과 함께 쓰도록 만들었습니다. 테마와 플러그인을 모두 설치하고 켜야 의도한 화면이 완성됩니다.
 
 <p align="center">
   <img src="images/light-main.png" width="49%" alt="라이트 모드">

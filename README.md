@@ -4,7 +4,9 @@
 
 A translucent, glassy theme for Obsidian.
 
-> **Requires the Glass Shelf Companion plugin.** This theme is built to be used together with the Glass Shelf Companion plugin. Install and enable both to get the intended look.
+> [!IMPORTANT]
+> ### Requires the Glass Shelf Companion plugin
+> This theme is built to be used together with the Glass Shelf Companion plugin. Install and enable both to get the intended look.
 
 <p align="center">
   <img src="images/light-main.png" width="49%" alt="Light mode">

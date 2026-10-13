@@ -24,6 +24,12 @@
   corner-shape: round;
 }
 
+/* 맥: Obsidian 이 .mod-macos 에서 기본 모서리를 스퀘어클(--corner-shape: superellipse(1.33))로 바꿔, 50% 로 만든 원형 버튼이 둥근 사각형이 됐다 (사용자 지적, 측정).
+   다른 기기와 같게 기본을 원형으로 되돌린다. 테마가 모양을 정한 곳(알약·둥근 사각형)은 각 규칙의 값을 그대로 쓴다 */
+body.mod-macos {
+  --corner-shape: round;
+}
+
 /* ---------- 글씨체: 원티드 산스 ----------
    글꼴은 이 파일 맨 끝에 base64 로 들어 있다 (@font-face "Glass Shelf Sans", Wanted Sans 를 줄인 판). 플러그인 없이도 쓰인다.
    이 기기에 Wanted Sans 가 설치돼 있으면 그쪽(전체 한글)을 먼저 쓴다 (예전엔 플러그인이 테마 폴더의 TTF 를 등록했는데, 테마에 넣은 뒤 TTF 와 그 코드는 뺐다)
@@ -49,7 +55,7 @@ body {
      바탕은 그대로, 검은 글자는 옅은 회색, 진한 색은 파스텔로. 바탕 쪽으로만 움직이므로 무엇도 반대로 진해지지 않는다
      (가운데 회색으로 모으는 대비는 밝은 것을 회색으로 끌어내려, 밝은 색 뒤에서 오히려 진해진다).
      섞기는 필터가 아니라 채움으로 한다 (아래 "알약 채움 자리")
-     - --lg-fade: 섞는 비율 (0 = 그대로, 1 = 바탕색). 플러그인 설정 "유리 투명도" 1~5 가 0.1~0.5 로 덮어쓴다.
+     - --lg-fade: 섞는 비율 (0 = 그대로, 1 = 바탕색). 플러그인 설정 "유리 투명도" 1~5 가 0.45~0.8 로 덮어쓴다.
        0.5면 라이트 검은 글자 → 50%, 다크 흰 글자 → 약 56%
      - --lg-tone: 유리 뒤에 거는 필터. 채도만 (--lg-sat: 1보다 낮으면 색이 빠진다). 모바일은 끈다
      뿌옇게 하는 건 뿌연 채움(--lg-frost-rgb × --lg-haze-a)이 맡는다: 라이트는 흰색, 다크는 검정 */
@@ -59,8 +65,7 @@ body {
   /* 메뉴·팝업·그래프 설정 창·자동완성처럼 떠 있는 판: 채도만 */
   --lg-menu-tone: saturate(var(--lg-sat)) var(--lg-bright,);
   /* 흐림(--lg-blur)은 넓은 판(메뉴·팝업·그래프 설정 창)과 편집창 탭 줄 뒤 유리판에만 쓴다 (각자 흐림 반지름을 따로 둔다).
-     알약·버튼은 뿌연 유리(--lg-haze): 뒤로 지나가는 글자를 알아볼 수 없을 만큼만 흐리고(--lg-pill-blur), 채움으로 뿌옇게.
-     단색 바탕은 흐려도 그대로라 눈에 띄게 흐려지는 건 글자·사진뿐이다. 글자 크기에 맞춘 값이라 흐림 세기 설정(--lg-blur-k)은 따르지 않는다.
+     알약·버튼은 뿌연 유리(--lg-haze): 흐리지 않고(--lg-pill-blur 비움, iOS·테마만 쓸 때만 흐림) 채도와 채움으로 뿌옇게.
      채움은 뿌연 정도에 비례 (5단계 = 30%) */
   /* 알약 흐림은 뺐다 (사용자 요청, 예전 blur(1px)). 채도만 남는다 */
   --lg-pill-blur: ;
@@ -84,8 +89,8 @@ body {
   /* 크기·간격 */
   --lg-pill-h: 34px;
   --lg-pad: 4px;
-  /* 버튼 묶음 알약의 좌우 안쪽 여백: 끝 버튼 기호가 알약 끝에 붙어 보여 위아래보다 넓게 (사용자 요청) */
-  --lg-pad-x: calc(var(--lg-pad) + 3px);
+  /* 버튼 묶음 알약의 좌우 안쪽 여백: 위아래와 같게 (사용자 결정) */
+  --lg-pad-x: var(--lg-pad);
   --lg-btn: var(--lg-pill-h);                             /* 단독 원형 버튼 = 알약 높이 */
   --lg-inner: calc(var(--lg-pill-h) - var(--lg-pad) * 2); /* 알약 안 버튼 */
   --lg-seg-w: calc(var(--lg-inner) * 1.3);                /* 패널 탭 (알약) 폭 */
@@ -97,7 +102,7 @@ body {
   --lg-gap-btn: calc(var(--lg-pill-h) - var(--lg-inner));
   --lg-tab-w: 320px; /* 편집창 탭 기본 폭 */
   --lg-tab-gap: 4px; /* 편집창 탭 사이 (가운데에 세로 구분선) */
-  --lg-row-radius: 11px;    /* 글자 항목(파일 목록·개요·검색 결과·설정 목록) 호버·선택 */
+  --lg-row-radius: 12px;    /* 글자 항목(파일 목록·개요·검색 결과·설정 목록) 호버·선택 */
   --lg-item-radius: 16px;  /* 메뉴 항목 호버 (항목 높이 32px 의 절반이 최대) */
   /* 모서리 모양 (렌즈 조율기에서 사용자가 고른 값): 알약 1.1, 둥근 사각형 1.4. 1 = 원형, 2 = 스퀘어클 */
   --lg-pill-shape: superellipse(1.1);
@@ -183,7 +188,7 @@ body,
   --lg-tab-hover-a: 0.08; /* 편집창 탭 호버 */
   --lg-tab-btn-hover-a: 0.1; /* 편집창 탭 안 X·≡ 호버 */
   --lg-edge: rgb(0 0 0 / 0.07);
-  --lg-panel-select-a: 0.12;               /* 패널 탭 선택 원 */
+  --lg-panel-select-a: 0.09;               /* 패널 탭 선택 원 (파일 탐색기 선택 행 --lg-row-hl-a 와 같은 진하기) */
   --lg-sep: rgb(0 0 0 / 0.18);             /* 편집창 탭 사이 세로선 */
   --lg-divider: rgb(0 0 0 / 0.1);          /* 쌓인 패널 사이 선 */
   --lg-slab-edge: rgb(255 255 255 / 0.7);  /* 탭 줄 뒤 유리판 밑변 */
@@ -206,7 +211,7 @@ body,
   --lg-shadow: 0 6px 8px 3px rgb(0 0 0 / 0.03), inset 0 6px 8px 3px rgb(0 0 0 / 0.03);
   --lg-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 16px rgb(0 0 0 / 0.075);
   /* 호버 유리 */
-  --lg-hover-base: rgb(118 118 128 / 0.3);
+  --lg-hover-base: rgb(118 118 128 / 0.17);
   --lg-hover-glass: var(--lg-hover-base);
   /* 회색 잉크: 트랙·호버·선택·메뉴 강조의 바탕 (틴트 때 틴트 색이 틴트 세기만큼 섞인다) */
   --lg-hl: rgb(var(--lg-ink));
@@ -277,7 +282,7 @@ body.lg-right-open .titlebar-button-container.mod-right {
     rgb(var(--lg-frost-rgb)) calc(var(--lg-haze-a) * 100%));
 }
 
-/* 모바일: 알약 필터(채도·1px 흐림)도 끈다. 필터는 서랍이 미끄러지거나 알약이 커지는 동안 매 프레임 알약마다 뒤를 떠 와
+/* 모바일: 알약 필터(채도)도 끈다. 필터는 서랍이 미끄러지거나 알약이 커지는 동안 매 프레임 알약마다 뒤를 떠 와
    애니메이션이 끊겼다 (사용자 확인). 굴절이 꺼져 있으면 알약이 뒤 화면을 아예 떠 오지 않는다 */
 body.is-mobile {
   --lg-tone: ;
@@ -305,7 +310,7 @@ body.theme-dark,
   --lg-tab-hover-a: 0.12;
   --lg-tab-btn-hover-a: 0.15;
   --lg-edge: rgb(255 255 255 / 0.09);
-  --lg-panel-select-a: 0.16;
+  --lg-panel-select-a: 0.12;
   --lg-sep: rgb(255 255 255 / 0.12);
   --lg-divider: rgb(255 255 255 / 0.08);
   --lg-slab-edge: rgb(255 255 255 / 0.12);
@@ -328,7 +333,7 @@ body.theme-dark,
   --lg-shadow: 0 6px 8px 3px rgb(0 0 0 / 0.03), inset 0 6px 8px 3px rgb(0 0 0 / 0.03);
   --lg-shadow-sm: 0 0 0 1px rgb(0 0 0 / 0.28), 0 4px 14px rgb(0 0 0 / 0.3);
 
-  --lg-hover-base: rgb(255 255 255 / 0.16);
+  --lg-hover-base: rgb(255 255 255 / 0.12);
   --lg-hover-rim:
     0 0 0 0.5px rgb(255 255 255 / 0.2),
     inset 0 2.5px 1px -2px rgb(255 255 255 / 0.35),
@@ -362,7 +367,7 @@ body.theme-dark,
   --lg-hover-a: calc(0.045 * var(--lg-u) + 0.07 * var(--lg-glass-t, 0));
   --lg-tab-hover-a: calc(0.08 * var(--lg-u) + 0.12 * var(--lg-glass-t, 0));
   --lg-tab-btn-hover-a: calc(0.1 * var(--lg-u) + 0.15 * var(--lg-glass-t, 0));
-  --lg-panel-select-a: calc(0.12 * var(--lg-u) + 0.16 * var(--lg-glass-t, 0));
+  --lg-panel-select-a: calc(0.09 * var(--lg-u) + 0.12 * var(--lg-glass-t, 0));
   --lg-edge: color-mix(in srgb, rgb(0 0 0 / 0.07), rgb(255 255 255 / 0.09) calc(var(--lg-glass-t, 0) * 100%));
   --lg-sep: color-mix(in srgb, rgb(0 0 0 / 0.18), rgb(255 255 255 / 0.12) calc(var(--lg-glass-t, 0) * 100%));
   --lg-divider: color-mix(in srgb, rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.08) calc(var(--lg-glass-t, 0) * 100%));
@@ -380,7 +385,7 @@ body.theme-dark,
   --lg-shadow-sm:
     0 calc(1px * var(--lg-u)) calc(2px * var(--lg-u)) calc(1px * var(--lg-glass-t, 0)) rgb(0 0 0 / calc(0.06 * var(--lg-u) + 0.28 * var(--lg-glass-t, 0))),
     0 4px calc(16px * var(--lg-u) + 14px * var(--lg-glass-t, 0)) rgb(0 0 0 / calc(0.075 * var(--lg-u) + 0.3 * var(--lg-glass-t, 0)));
-  --lg-hover-base: color-mix(in srgb, rgb(118 118 128 / 0.3), rgb(255 255 255 / 0.16) calc(var(--lg-glass-t, 0) * 100%));
+  --lg-hover-base: color-mix(in srgb, rgb(118 118 128 / 0.17), rgb(255 255 255 / 0.12) calc(var(--lg-glass-t, 0) * 100%));
   --lg-hover-rim:
     0 0 0 0.5px color-mix(in srgb, rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.2) calc(var(--lg-glass-t, 0) * 100%)),
     -1px 0 0 -0.5px rgb(0 0 0 / calc(0.08 * var(--lg-u))),
@@ -980,9 +985,15 @@ body.lg-wc-compact.mod-linux {
 
 /* 올려도 탭 줄 자리는 그대로다: 커진 알약이 왼쪽 버튼 위에 겹쳐 생긴다 */
 
+/* 전환은 오른쪽 위 자리 표시(.mod-top-right-space)가 없는 탭 줄에도 둔다. Obsidian 이 탭을 닫거나 창 크기를 바꿀 때 그 표시를
+   잠깐 뗐다 다시 붙이는데, 뗄 때는 전환이 없어 여백이 한 번에 빠지고 붙일 때만 천천히 돌아와 오른쪽 버튼 묶음이 창 제어 쪽으로
+   튀었다 돌아왔다 (사용자 지적, 측정: 67px → 10px → 260ms 동안 67px) */
+.is-hidden-frameless:not(.is-fullscreen) .workspace-tabs .workspace-tab-header-container:not(#lg) {
+  transition: padding-right 260ms var(--lg-ease-settle);
+}
+
 .is-hidden-frameless:not(.is-fullscreen) .workspace-tabs.mod-top-right-space .workspace-tab-header-container:not(#lg) {
   padding-right: calc(var(--lg-gap) + var(--frame-right-space));
-  transition: padding-right 260ms var(--lg-ease-settle);
 }
 
 .is-hidden-frameless:not(.is-fullscreen) .workspace-tabs.mod-top-left-space .workspace-tab-header-container:not(#lg) {
@@ -1287,49 +1298,49 @@ body .mod-right-split .workspace-tab-header.is-active:not(:only-child) .workspac
 
 /* 넓게(body.lg-tab-wide): 탭 알약이 패널 좌우 끝까지. 맨 위 묶음(Obsidian .mod-top)은 닫기·····창 제어가 있는 줄 아래 한 줄을
    더 두어 거기에 놓고, 아래 묶음은 제 줄에서 넓힌다. 탭이 하나뿐인 묶음은 넓히지 않고 원래대로 둔다 (사용자 요청) */
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs:not(.lg-one) > .workspace-tab-header-container > .workspace-tab-header-container-inner:not(#lg):not(#lg):not(#lg) {
+:is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tabs:not(.lg-one) > .workspace-tab-header-container > .workspace-tab-header-container-inner:not(#lg):not(#lg):not(#lg) {
   flex: 1 1 auto;
   width: auto;
   margin-inline: 0;
 }
 
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs:not(.lg-one) > .workspace-tab-header-container > .lg-side-balance:not(#lg):not(#lg) {
+:is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tabs:not(.lg-one) > .workspace-tab-header-container > .lg-side-balance:not(#lg):not(#lg) {
   display: none;
 }
 
 /* 넓힌 탭은 같은 폭으로 나눠 갖고(이름이 길면 그만큼은 지킨다), 기호·이름은 그 가운데 */
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tab-header-container-inner > .workspace-tab-header:not(:only-child):not(#lg):not(#lg) {
+:is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tab-header-container-inner > .workspace-tab-header:not(:only-child):not(#lg):not(#lg) {
   flex: 1 1 0;
   min-width: max-content;
 }
 
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs.mod-top:not(.lg-one) {
+:is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tabs.mod-top:not(.lg-one) {
   --header-height: calc(var(--lg-pill-h) * 2 + var(--lg-gap) * 3);
 }
 
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs.mod-top:not(.lg-one) > .workspace-tab-header-container:not(#lg) {
+:is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tabs.mod-top:not(.lg-one) > .workspace-tab-header-container:not(#lg) {
   height: var(--header-height);
   flex-wrap: wrap;
   align-content: center;
   row-gap: var(--lg-gap);
 }
 
-body.lg-tab-wide .mod-left-split .workspace-tabs.mod-top:not(.lg-one) > .workspace-tab-header-container:not(#lg) {
+:is(body.lg-tab-wide .mod-left-split, .mod-left-split.lg-tab-list) .workspace-tabs.mod-top:not(.lg-one) > .workspace-tab-header-container:not(#lg) {
   justify-content: flex-end;
 }
 
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs.mod-top:not(.lg-one) > .workspace-tab-header-container > .workspace-tab-header-container-inner:not(#lg):not(#lg):not(#lg) {
+:is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tabs.mod-top:not(.lg-one) > .workspace-tab-header-container > .workspace-tab-header-container-inner:not(#lg):not(#lg):not(#lg) {
   order: 10;
   flex-basis: 100%;
 }
 
 /* 창 제어 자리만큼 비운 안쪽 여백을 둘째 줄은 되돌려 쓴다. 기본 폭도 그만큼 늘려야 첫 줄에 끼지 않고 내려간다 */
-body.lg-tab-wide.is-hidden-frameless:not(.is-fullscreen) :is(.mod-left-split, .mod-right-split) .workspace-tabs.mod-top:not(.lg-one).mod-top-right-space > .workspace-tab-header-container > .workspace-tab-header-container-inner:not(#lg):not(#lg):not(#lg) {
+body.is-hidden-frameless:not(.is-fullscreen) :is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tabs.mod-top:not(.lg-one).mod-top-right-space > .workspace-tab-header-container > .workspace-tab-header-container-inner:not(#lg):not(#lg):not(#lg) {
   flex-basis: calc(100% + var(--frame-right-space));
   margin-inline-end: calc(var(--frame-right-space) * -1);
 }
 
-body.lg-tab-wide.is-hidden-frameless:not(.is-fullscreen) :is(.mod-left-split, .mod-right-split) .workspace-tabs.mod-top:not(.lg-one).mod-top-left-space > .workspace-tab-header-container > .workspace-tab-header-container-inner:not(#lg):not(#lg):not(#lg) {
+body.is-hidden-frameless:not(.is-fullscreen) :is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tabs.mod-top:not(.lg-one).mod-top-left-space > .workspace-tab-header-container > .workspace-tab-header-container-inner:not(#lg):not(#lg):not(#lg) {
   flex-basis: calc(100% + var(--frame-left-space, 0px));
   margin-inline-start: calc(var(--frame-left-space, 0px) * -1);
 }
@@ -1343,7 +1354,7 @@ body.lg-tab-wide.is-hidden-frameless:not(.is-fullscreen) :is(.mod-left-split, .m
   display: none;
 }
 
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs:not(.lg-one) > .workspace-tab-header-container > .lg-nav-row:not(#lg) {
+:is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tabs:not(.lg-one) > .workspace-tab-header-container > .lg-nav-row:not(#lg) {
   display: flex;
   flex: 1 1 0;
   min-width: 0;
@@ -1353,43 +1364,43 @@ body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs:not(.lg-
   gap: var(--lg-gap);
 }
 
-body.lg-tab-wide .mod-right-split .workspace-tabs:not(.lg-one) > .workspace-tab-header-container > .lg-nav-row:not(#lg) {
+:is(body.lg-tab-wide .mod-right-split, .mod-right-split.lg-tab-list) .workspace-tabs:not(.lg-one) > .workspace-tab-header-container > .lg-nav-row:not(#lg) {
   flex-direction: row-reverse;
 }
 
 /* 버튼이 없는 보기(로컬 그래프 등)에서는 빈 버튼 줄이 자리를 차지하지 않게 숨긴다. 아래 묶음에서 탭 알약 옆 절반을 차지했다 */
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tab-header-container > .lg-nav-row.lg-nav-none:not(#lg):not(#lg) {
+:is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tab-header-container > .lg-nav-row.lg-nav-none:not(#lg):not(#lg) {
   display: none;
 }
 
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs:not(.lg-one):not(.lg-nav-fold) > .workspace-tab-header-container > .lg-nav-more:not(#lg):not(#lg) {
+:is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tabs:not(.lg-one):not(.lg-nav-fold) > .workspace-tab-header-container > .lg-nav-more:not(#lg):not(#lg) {
   display: none;
 }
 
 /* 버튼 줄이 탭 줄 폭에 다 들어가지 않으면(패널을 줄이거나 창이 작을 때) 줄을 숨기고 ··· 하나로 묶는다 (사용자 요청).
    들어가는지는 플러그인이 재서 .lg-nav-fold 로 알린다 */
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs.lg-nav-fold > .workspace-tab-header-container > .lg-nav-row:not(#lg):not(#lg):not(#lg) {
+:is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tabs.lg-nav-fold > .workspace-tab-header-container > .lg-nav-row:not(#lg):not(#lg):not(#lg) {
   display: none;
 }
 
 /* 아래 묶음(맨 위가 아닌 탭 묶음)은 둘째 줄을 그대로 두고 ··· 을 탭 줄 밑으로 내린다 (사용자 요청).
    탭 줄이 한 줄을 다 차지하게 해 ··· 이 둘째 줄로 넘어가게 하고, 패널 편집창 쪽 끝에 둔다(첫 줄 ··· 과 같은 쪽) */
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs:not(.mod-top).lg-nav-two.lg-nav-fold:not(.lg-one) > .workspace-tab-header-container > .workspace-tab-header-container-inner:not(#lg):not(#lg) {
+:is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tabs:not(.mod-top).lg-nav-two.lg-nav-fold:not(.lg-one) > .workspace-tab-header-container > .workspace-tab-header-container-inner:not(#lg):not(#lg) {
   flex-basis: 100%;
 }
 
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs:not(.mod-top).lg-nav-two.lg-nav-fold:not(.lg-one) > .workspace-tab-header-container > .lg-nav-more:not(#lg):not(#lg):not(#lg) {
+:is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tabs:not(.mod-top).lg-nav-two.lg-nav-fold:not(.lg-one) > .workspace-tab-header-container > .lg-nav-more:not(#lg):not(#lg):not(#lg) {
   order: 10;
   margin-inline-start: auto;
 }
 
-body.lg-tab-wide .mod-right-split .workspace-tabs:not(.mod-top).lg-nav-two.lg-nav-fold:not(.lg-one) > .workspace-tab-header-container > .lg-nav-more:not(#lg):not(#lg):not(#lg) {
+:is(body.lg-tab-wide .mod-right-split, .mod-right-split.lg-tab-list) .workspace-tabs:not(.mod-top).lg-nav-two.lg-nav-fold:not(.lg-one) > .workspace-tab-header-container > .lg-nav-more:not(#lg):not(#lg):not(#lg) {
   margin-inline-start: 0;
   margin-inline-end: auto;
 }
 
 /* 왼쪽 패널 첫 줄: [버튼 줄] [닫기] */
-body.lg-tab-wide .mod-left-split .workspace-tabs.mod-top:not(.lg-one) > .workspace-tab-header-container > .lg-panel-toggle:not(#lg) {
+:is(body.lg-tab-wide .mod-left-split, .mod-left-split.lg-tab-list) .workspace-tabs.mod-top:not(.lg-one) > .workspace-tab-header-container > .lg-panel-toggle:not(#lg) {
   order: 1;
 }
 
@@ -1412,6 +1423,78 @@ body.lg-tab-wide .mod-left-split .workspace-tabs.mod-top:not(.lg-one) > .workspa
   display: none;
 }
 
+/* 패널 검색 (플러그인 .lg-nav-search): 자리가 넉넉하면 돋보기 버튼이 알약으로 넓어지고 검색 칸이 그 안에 들어간다 (칸반 검색과 같은 방식).
+   폭(--lg-ns-w)은 플러그인이 버튼 줄의 빈 폭으로 정한다. 모서리는 알약 공식으로: 버튼 크기일 땐 원과 거의 같아 넓어질 때 튀지 않는다 */
+:is(body.lg-tab-wide, .lg-tab-list) .lg-nav-rest > .lg-nav-find:not(#lg):not(#lg) {
+  justify-content: flex-start;
+  padding-inline-start: calc((var(--lg-btn) - var(--icon-size)) / 2);
+  border-radius: calc(var(--lg-btn) * var(--lg-pill-rx)) / calc(var(--lg-btn) / 2);
+  corner-shape: var(--lg-pill-shape);
+  transition:
+    width 320ms var(--lg-ease),
+    background-color 180ms var(--lg-ease),
+    transform 180ms var(--lg-ease);
+}
+
+:is(body.lg-tab-wide, .lg-tab-list) .lg-nav-rest > .lg-nav-find.lg-nav-search:not(#lg):not(#lg) {
+  width: var(--lg-ns-w);
+}
+
+/* 검색 버튼(돋보기, 플러그인 .lg-nav-find)은 원형 버튼 묶음에서 패널 바깥쪽 끝에 (사용자 요청).
+   묶음은 편집창 쪽에 붙어 있어, 넓어질 때 다른 버튼은 제자리이고 검색 버튼만 빈 칸 쪽으로 넓어진다 */
+.mod-left-split .lg-nav-rest > .lg-nav-find {
+  order: -1;
+}
+
+.mod-right-split .lg-nav-rest > .lg-nav-find {
+  order: 1;
+}
+
+/* 호버 유리는 알약 가운데가 아니라 돋보기 자리에 (자석도 그 자리 기준, 플러그인 magnetBox) */
+:is(body.lg-tab-wide, .lg-tab-list) .lg-nav-rest > .lg-nav-find:not(#lg):not(#lg)::before {
+  left: calc(var(--lg-btn) / 2);
+}
+
+/* 검색 칸 위에서는 호버 유리를 보이지 않게 (돋보기 근처에서만, 사용자 요청. 플러그인 .lg-nav-typing) */
+:is(body.lg-tab-wide, .lg-tab-list) .lg-nav-rest > .lg-nav-find.lg-nav-typing:not(#lg):not(#lg)::before {
+  opacity: 0;
+}
+
+/* 검색 칸: 넓어진 버튼에서 돋보기 자리를 뺀 나머지 */
+:is(body.lg-tab-wide, .lg-tab-list) .lg-nav-search > .search-input-container:not(#lg):not(#lg) {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--lg-btn);
+  right: 4px;
+  width: auto;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  animation: lg-kb-search-in 320ms var(--lg-ease);
+}
+
+/* 다른 보기로 바뀌어 버튼이 사라질 때 남기는 검색 칸 사본(플러그인 .lg-injected)은 나타나는 움직임 없이 그대로 보인다.
+   사본에도 나타나기가 걸려 글자가 0 에서 다시 차올라, 사라지는 동안 '입력하여 검색하기'가 한 번 깜빡였다 (사용자 지적) */
+:is(body.lg-tab-wide, .lg-tab-list) .lg-nav-search > .search-input-container.lg-injected:not(#lg):not(#lg) {
+  animation: none;
+}
+
+:is(body.lg-tab-wide, .lg-tab-list) .lg-nav-search > .search-input-container:not(#lg):not(#lg)::before {
+  content: none;
+}
+
+:is(body.lg-tab-wide, .lg-tab-list) .lg-nav-search > .search-input-container input:not(#lg):not(#lg) {
+  height: 100%;
+  padding: 0 calc(var(--lg-inner) + 2px) 0 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  font-size: var(--font-ui-small);
+}
+
 /* 켜진 토글은 기호를 강조색으로 */
 body .lg-nav-rest > .clickable-icon.is-active:not(#lg):not(#lg) {
   --icon-color: var(--interactive-accent);
@@ -1420,37 +1503,243 @@ body .lg-nav-rest > .clickable-icon.is-active:not(#lg):not(#lg) {
 }
 
 /* 아래 묶음: 버튼이 있으면 탭 알약 밑에 한 줄 더 */
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs:not(.mod-top).lg-nav-two:not(.lg-one) {
+:is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tabs:not(.mod-top).lg-nav-two:not(.lg-one) {
   --header-height: calc(var(--lg-pill-h) * 2 + var(--lg-gap) * 3);
 }
 
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs:not(.mod-top).lg-nav-two:not(.lg-one) > .workspace-tab-header-container:not(#lg) {
+:is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tabs:not(.mod-top).lg-nav-two:not(.lg-one) > .workspace-tab-header-container:not(#lg) {
   height: var(--header-height);
   flex-wrap: wrap;
   align-content: center;
   row-gap: var(--lg-gap);
 }
 
-body.lg-tab-wide :is(.mod-left-split, .mod-right-split) .workspace-tabs:not(.mod-top).lg-nav-two:not(.lg-one) > .workspace-tab-header-container > .lg-nav-row:not(#lg):not(#lg) {
+:is(body.lg-tab-wide :is(.mod-left-split, .mod-right-split), .workspace-split.lg-tab-list) .workspace-tabs:not(.mod-top).lg-nav-two:not(.lg-one) > .workspace-tab-header-container > .lg-nav-row:not(#lg):not(#lg) {
   order: 10;
   flex-basis: 100%;
 }
 
-/* 효과 없음(body.lg-tab-plain): 렌즈 없이 선택한 탭이 강조색 알약. 안의 기호·글자는 강조색의 밝기(OKLCH 명도)가
+/* 심플(body.lg-tab-plain, 설정 "심플" 또는 좌우 패널 투명): 렌즈 없이 선택한 탭이 강조색 알약. 목록 방식 패널은 받지 않는다. 안의 기호·글자는 강조색의 밝기(OKLCH 명도)가
    0.75 미만이면 흰색, 그 이상이면 검정. 강조색에서 바로 계산하므로 강조색을 바꾸면 곧바로 따라간다 */
 body {
   --lg-tab-on-ink: oklch(from var(--interactive-accent) clamp(0, (0.75 - l) * 1000, 1) 0 0);
 }
 
-body.lg-tab-plain :is(.mod-left-split, .mod-right-split) .workspace-tab-header-container .workspace-tab-header.is-active:not(:only-child):not(#lg),
+body.lg-tab-plain :is(.mod-left-split, .mod-right-split):not(.lg-tab-list) .workspace-tab-header-container .workspace-tab-header.is-active:not(:only-child):not(#lg),
 body.lg-tab-plain.is-mobile .workspace-drawer-tab-options-list > .workspace-tab-header.is-active:not(:only-child):not(#lg) .workspace-tab-header-inner {
   background-color: var(--interactive-accent);
 }
 
-body.lg-tab-plain :is(.mod-left-split, .mod-right-split) .workspace-tab-header-container .workspace-tab-header.is-active:not(:only-child) :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-title):not(#lg):not(#lg),
+body.lg-tab-plain :is(.mod-left-split, .mod-right-split):not(.lg-tab-list) .workspace-tab-header-container .workspace-tab-header.is-active:not(:only-child) :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-title):not(#lg):not(#lg),
 body.lg-tab-plain.is-mobile .workspace-drawer-tab-options-list > .workspace-tab-header.is-active:not(:only-child):not(#lg) :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-title) {
   --icon-color: var(--lg-tab-on-ink, #fff);
   color: var(--lg-tab-on-ink, #fff);
+}
+
+/* 목록 (탭 전환 효과 "목록", 사용자 요청): 패널 탭을 한 줄에 하나씩 세로로 늘어놓는다. 고른 패널에 플러그인이 .lg-tab-list 를 붙인다.
+   첫 줄은 넓게 모드의 버튼 줄을 그대로 쓰고(넓게 규칙이 이 패널에도 걸린다), 목록은 둘째 줄부터. 왼쪽은 강조색 기호, 오른쪽은 본문색 이름.
+   선택한 탭은 강조색 알약이고, 안의 기호·이름은 강조색 밝기에 따라 흰색·검정(--lg-tab-on-ink). 움직임(렌즈·누름·호버 유리)은 없다.
+   헤더 높이는 탭 수(플러그인 --lg-tab-n)로 정한다. 버튼이 없는 아래 묶음은 첫 줄 없이 목록만 */
+.workspace-split.lg-tab-list .workspace-tabs:not(#lg) {
+  /* 줄 높이는 버튼 줄 알약과 같게, 글자·기호도 한 단계 크게 (사용자 요청) */
+  --lg-list-row: var(--lg-pill-h);
+  --lg-list-gap: 2px;
+  --lg-list-h: calc(var(--lg-tab-n, 1) * var(--lg-list-row) + (var(--lg-tab-n, 1) - 1) * var(--lg-list-gap));
+  /* 맨 밑 구역 제목(고른 탭 이름) 줄 높이 */
+  --lg-sec-h: 20px;
+  --lg-sec-add: 0px;
+  --header-height: calc(var(--lg-pill-h) + var(--lg-list-h) + var(--lg-sec-add) + var(--lg-gap) * 3);
+}
+
+/* 구역 제목이 있는 묶음(탭 둘 이상, 플러그인 .lg-sec)만 그 줄 높이를 더한다 */
+.workspace-split.lg-tab-list .workspace-tabs.lg-sec:not(#lg) {
+  --lg-sec-add: calc(var(--lg-sec-h) + var(--lg-gap));
+}
+
+.workspace-split.lg-tab-list .workspace-tabs:not(.mod-top):not(.lg-nav-two):not(#lg) {
+  --header-height: calc(var(--lg-list-h) + var(--lg-sec-add) + var(--lg-gap) * 2);
+}
+
+/* 검색 칸이 머리 바로 밑에 붙어 위 테두리·그림자가 머리에 가려졌다 (사용자 지적). 목록 방식 패널에서는 조금 띄우고,
+   그림자는 아래로만 퍼지게 한다(퍼짐을 줄이고 아래로 옮겨 위로는 몇 px 만): 칸 안 내용은 머리보다 아래 층이라 위로 퍼진 그림자는 머리 바탕판에 덮인다 */
+.workspace-split.lg-tab-list .workspace-leaf-content[data-type="search"] .search-row:not(#lg):not(#lg):not(#lg) {
+  margin-top: 6px;
+}
+
+.workspace-split.lg-tab-list .workspace-leaf-content[data-type="search"] {
+  --lg-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06), 0 8px 16px -4px rgb(0 0 0 / 0.075);
+  --lg-menu-shadow: 0 3px 6px -1px rgb(0 0 0 / 0.06), 0 30px 60px -24px rgb(0 0 0 / 0.09);
+}
+
+body.theme-dark .workspace-split.lg-tab-list .workspace-leaf-content[data-type="search"] {
+  --lg-shadow-sm: 0 0 0 1px rgb(0 0 0 / 0.28), 0 8px 14px -4px rgb(0 0 0 / 0.3);
+  --lg-menu-shadow: 0 0 0 1px rgb(0 0 0 / 0.28), 0 30px 60px -24px rgb(0 0 0 / 0.29);
+}
+
+/* 맨 밑 구역 제목: 고른 탭 이름을 옅은 회색 작은 굵은 글자로 (macOS 사이드바 구역 제목, 플러그인 .lg-list-section, 사용자 요청).
+   왼쪽 여백은 목록 줄(20px)보다 좁게, 자리는 목록보다 아래 내용 쪽으로 6px 내린다 (사용자 요청) */
+.workspace-split.lg-tab-list .workspace-tabs > .workspace-tab-header-container > .lg-list-section:not(#lg) {
+  order: 20;
+  flex: 0 0 100%;
+  height: var(--lg-sec-h);
+  line-height: var(--lg-sec-h);
+  position: relative;
+  top: 6px;
+  padding-inline: 12px;
+  font-size: var(--font-ui-small);
+  font-weight: 500;
+  color: var(--text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+
+.workspace-split.lg-tab-list .workspace-tabs > .workspace-tab-header-container:not(#lg):not(#lg) {
+  height: var(--header-height);
+  flex-wrap: wrap;
+  align-content: center;
+  row-gap: var(--lg-gap);
+}
+
+/* 아래 묶음도 버튼 줄(과 접힌 ···)을 첫 줄에 */
+.workspace-split.lg-tab-list .workspace-tabs > .workspace-tab-header-container > :is(.lg-nav-row, .lg-nav-more):not(#lg):not(#lg):not(#lg) {
+  order: 0;
+}
+
+.workspace-split.lg-tab-list .workspace-tabs > .workspace-tab-header-container > .lg-nav-row:not(#lg):not(#lg):not(#lg) {
+  flex-basis: 0;
+}
+
+/* 목록: 유리 알약이 아니라 맨 바탕 위에 줄을 쌓는다 */
+.workspace-split.lg-tab-list .workspace-tabs > .workspace-tab-header-container > .workspace-tab-header-container-inner:not(#lg):not(#lg):not(#lg):not(#lg) {
+  order: 10;
+  flex: 0 0 100%;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--lg-list-gap);
+  width: auto;
+  height: var(--lg-list-h);
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  background: none;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border-radius: 0;
+}
+
+/* 창 제어 자리만큼 비운 안쪽 여백은 첫 줄 몫이라, 목록은 되돌려 쓴다 (넓게와 같은 방식) */
+body.is-hidden-frameless:not(.is-fullscreen) .workspace-split.lg-tab-list .workspace-tabs.mod-top-right-space > .workspace-tab-header-container > .workspace-tab-header-container-inner:not(#lg):not(#lg):not(#lg):not(#lg) {
+  flex-basis: calc(100% + var(--frame-right-space));
+  margin-inline-end: calc(var(--frame-right-space) * -1);
+}
+
+body.is-hidden-frameless:not(.is-fullscreen) .workspace-split.lg-tab-list .workspace-tabs.mod-top-left-space > .workspace-tab-header-container > .workspace-tab-header-container-inner:not(#lg):not(#lg):not(#lg):not(#lg) {
+  flex-basis: calc(100% + var(--frame-left-space, 0px));
+  margin-inline-start: calc(var(--frame-left-space, 0px) * -1);
+}
+
+.workspace-split.lg-tab-list .lg-seg-indicator {
+  display: none;
+}
+
+.workspace-split.lg-tab-list .workspace-tab-header-container-inner > .workspace-tab-header:not(#lg):not(#lg):not(#lg) {
+  flex: 0 0 var(--lg-list-row);
+  width: auto;
+  min-width: 0;
+  height: var(--lg-list-row);
+  /* 기호 왼쪽 여백을 넓힌다 (사용자 요청) */
+  padding-inline: 20px 12px;
+  /* 하이라이트 곡률은 파일 탐색기 줄무늬·줄 하이라이트와 같게 (사용자 요청) */
+  border-radius: var(--lg-row-radius);
+  corner-shape: var(--lg-rect-shape);
+  background-color: transparent;
+}
+
+.workspace-split.lg-tab-list .workspace-tab-header-container-inner > .workspace-tab-header:not(#lg):not(#lg):not(#lg)::before {
+  content: none;
+}
+
+.workspace-split.lg-tab-list .workspace-tab-header-container-inner > .workspace-tab-header .workspace-tab-header-inner:not(#lg):not(#lg):not(#lg) {
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+.workspace-split.lg-tab-list .workspace-tab-header-container-inner > .workspace-tab-header .workspace-tab-header-inner-icon:not(#lg):not(#lg):not(#lg) {
+  --icon-color: var(--interactive-accent);
+  color: var(--interactive-accent);
+}
+
+/* 기호 크기: Obsidian 은 기호(svg)에 크기 변수를 직접 둬서 바깥에서 물려줄 수 없다 */
+.workspace-split.lg-tab-list .workspace-tab-header-container-inner > .workspace-tab-header .workspace-tab-header-inner-icon .svg-icon:not(#lg):not(#lg):not(#lg) {
+  --icon-size: 20px;
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.workspace-split.lg-tab-list .workspace-tab-header-container-inner > .workspace-tab-header .workspace-tab-header-inner-title:not(#lg):not(#lg):not(#lg) {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+  max-width: none;
+  padding: 0;
+  font-size: var(--font-ui-medium);
+  font-weight: 600;
+  color: var(--text-normal);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (hover: hover) {
+  /* 호버는 파일 탐색기 줄 하이라이트와 같은 진하기 (--lg-row-hl-a, 사용자 요청) */
+  .workspace-split.lg-tab-list .workspace-tab-header-container-inner > .workspace-tab-header:not(.is-active):hover:not(#lg):not(#lg):not(#lg) {
+    background-color: color-mix(in srgb, var(--lg-hl) calc(var(--lg-row-hl-a) * 100%), transparent);
+  }
+}
+
+.workspace-split.lg-tab-list .workspace-tab-header-container-inner > .workspace-tab-header.is-active:not(#lg):not(#lg):not(#lg):not(#lg) {
+  background-color: var(--interactive-accent);
+}
+
+.workspace-split.lg-tab-list .workspace-tab-header-container-inner > .workspace-tab-header.is-active :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-title):not(#lg):not(#lg):not(#lg):not(#lg) {
+  --icon-color: var(--lg-tab-on-ink, #fff);
+  color: var(--lg-tab-on-ink, #fff);
+}
+
+/* 파일 탐색기 선택 줄처럼: 그 패널을 마지막으로 누른 게 아니면(플러그인 .lg-split-on 없음) 선택 탭은 호버 회색, 글자·기호는 평소 색 (사용자 요청) */
+/* 회색은 파일 탐색기 선택 줄 회색(--lg-row-hover)과 같은 진하기 */
+.workspace-split.lg-tab-list:not(.lg-split-on) .workspace-tab-header-container-inner > .workspace-tab-header.is-active:not(#lg):not(#lg):not(#lg):not(#lg):not(#lg) {
+  background-color: color-mix(in srgb, var(--lg-hl) calc(var(--lg-row-hl-a) * 100%), transparent);
+}
+
+.workspace-split.lg-tab-list:not(.lg-split-on) .workspace-tab-header-container-inner > .workspace-tab-header.is-active .workspace-tab-header-inner-icon:not(#lg):not(#lg):not(#lg):not(#lg):not(#lg) {
+  --icon-color: var(--interactive-accent);
+  color: var(--interactive-accent);
+}
+
+.workspace-split.lg-tab-list:not(.lg-split-on) .workspace-tab-header-container-inner > .workspace-tab-header.is-active .workspace-tab-header-inner-title:not(#lg):not(#lg):not(#lg):not(#lg):not(#lg) {
+  color: var(--text-normal);
+}
+
+/* 탭이 하나뿐이면 고를 게 없으니 하이라이트하지 않는다 (사용자 요청) */
+.workspace-split.lg-tab-list .workspace-tab-header-container-inner > .workspace-tab-header.is-active:only-child:not(#lg):not(#lg):not(#lg):not(#lg):not(#lg) {
+  background-color: transparent;
+}
+
+.workspace-split.lg-tab-list .workspace-tab-header-container-inner > .workspace-tab-header.is-active:only-child .workspace-tab-header-inner-icon:not(#lg):not(#lg):not(#lg):not(#lg):not(#lg) {
+  --icon-color: var(--interactive-accent);
+  color: var(--interactive-accent);
+}
+
+.workspace-split.lg-tab-list .workspace-tab-header-container-inner > .workspace-tab-header.is-active:only-child .workspace-tab-header-inner-title:not(#lg):not(#lg):not(#lg):not(#lg):not(#lg) {
+  color: var(--text-normal);
 }
 
 /* ---- 파일 탐색기·개요의 버튼 줄 (플러그인이 꺼져 있을 때) ---- */
@@ -1540,6 +1829,38 @@ body:not(.lg-ui) .workspace-leaf-content[data-type="outline"] > .nav-header::bef
     color-mix(in srgb, var(--lg-fade-bg) 50%, transparent) 55%,
     transparent 100%
   );
+}
+
+/* 데스크톱: 색을 덮지 않고 목록 칸에 마스크를 씌워 내용 자체가 투명해지며 사라진다 (사용자 요청).
+   패널 바탕은 패널(.workspace-split)에 칠해져 있어 그대로 남고, 좌우 패널 투명(아크릴)을 켜도 사라지는 자리에 색 띠가 생기지 않는다.
+   투명도는 위 색 그라데이션과 같게 (맨 위 12%, 55% 지점 50%, 탭 줄 끝 100%). 휴대폰·태블릿은 위 그라데이션 그대로 (마스크 합성이 서랍 움직임을 무겁게 할 수 있다) */
+body:not(.is-mobile).lg-ui .workspace-split:is(.mod-left-split, .mod-right-split) > .workspace-tabs > .workspace-tab-header-container:not(#lg):not(#lg)::before {
+  background: none;
+}
+
+body:not(.is-mobile).lg-ui .workspace-split:is(.mod-left-split, .mod-right-split) > .workspace-tabs > .workspace-tab-container {
+  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.12) 0%, rgb(0 0 0 / 0.5) calc(var(--header-height) * 0.55), #000 var(--header-height));
+}
+
+/* 탭 목록 패널은 목록 밑에서 내용을 딱 끊는다 (사용자 요청): 목록 뒤로 내용이 흐리게 지나가지 않게, 사라지는 그라데이션도 없이 */
+body:not(.is-mobile).lg-ui .workspace-split.lg-tab-list > .workspace-tabs > .workspace-tab-container:not(#lg) {
+  mask-image: linear-gradient(to bottom, transparent var(--header-height), #000 var(--header-height));
+}
+
+/* 위아래로 나눈 패널의 위 묶음은 아래 구분선(맨 아래 1px) 위에서 내용을 딱 끊는다 (사용자 지적): 내용이 구분선 밑으로 지나가 선과 겹쳐 보였다.
+   위쪽 사라지기(또는 목록 패널의 딱 끊기)는 그대로 두고 아래 끝 4px 만 비운다.
+   "뒤에 다른 탭 묶음이 있는 묶음"은 :nth-last-child(n+2 of …)로 고른다 (:has 없이, 플러그인 없이도) */
+body:not(.is-mobile).lg-ui .workspace-split:is(.mod-left-split, .mod-right-split) > .workspace-tabs:nth-last-child(n+2 of .workspace-tabs) > .workspace-tab-container:not(#lg) {
+  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.12) 0%, rgb(0 0 0 / 0.5) calc(var(--header-height) * 0.55), #000 var(--header-height), #000 calc(100% - 4px), transparent calc(100% - 4px));
+}
+
+body:not(.is-mobile).lg-ui .workspace-split.lg-tab-list > .workspace-tabs:nth-last-child(n+2 of .workspace-tabs) > .workspace-tab-container:not(#lg):not(#lg) {
+  mask-image: linear-gradient(to bottom, transparent var(--header-height), #000 var(--header-height), #000 calc(100% - 4px), transparent calc(100% - 4px));
+}
+
+/* 플러그인 없이: 위쪽 사라지기가 없으니 아래 끝 4px 만 비운다 */
+body:not(.is-mobile):not(.lg-ui) .workspace-split:is(.mod-left-split, .mod-right-split) > .workspace-tabs:nth-last-child(n+2 of .workspace-tabs) > .workspace-tab-container:not(#lg) {
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 4px), transparent calc(100% - 4px));
 }
 
 /* 사이드바 위쪽으로 창 옮기기 (사용자 요청): 첫 줄(보기 버튼 줄)만 잡히게 한다.
@@ -1697,6 +2018,12 @@ body:not(.lg-ui) .workspace-leaf-content[data-type="outline"] > .view-content {
   corner-shape: var(--lg-rect-shape);
 }
 
+/* 하이라이트(호버·선택·끌기)가 깔린 줄의 막대는 숨긴다 (플러그인 .lg-stripe-hide, 사용자 요청): 하이라이트가 반투명이라
+   줄무늬 위에서는 옅고 패널 바탕 위에서는 진해 보였다. 막대를 숨기면 어느 줄이든 같은 진하기로 보인다 */
+.lg-stripe-bar.lg-stripe-hide {
+  visibility: hidden;
+}
+
 /* 파일 탐색기 줄 하이라이트(호버·선택·끌기) 폭을 줄무늬와 맞춘다 (사용자 요청): 줄 자기 배경 대신 ::before 층을 칠하고,
    그 층을 왼쪽은 목록 왼쪽 끝에서 알약 간격(--lg-gap) 자리까지(줄마다 --lg-row-ext-l), 오른쪽은 목록 안쪽 끝(스크롤바 칸 왼쪽 끝)까지 늘린다.
    두 값은 플러그인이 목록마다 잰다. 각 상태 규칙은 배경색 대신 --lg-row-bg 를 정한다 */
@@ -1705,7 +2032,7 @@ body:not(.lg-ui) .workspace-leaf-content[data-type="outline"] > .view-content {
 }
 
 .workspace-leaf-content[data-type="file-explorer"] .tree-item-self.is-being-dragged-over {
-  --lg-row-bg: color-mix(in oklch, var(--interactive-accent) 10%, var(--lg-panel-bg));
+  --lg-row-bg: color-mix(in oklch, var(--interactive-accent) 10%, transparent);
 }
 
 .workspace-leaf-content[data-type="file-explorer"] .tree-item-self:not(#lg):not(#lg):not(#lg) {
@@ -1724,6 +2051,11 @@ body:not(.lg-ui) .workspace-leaf-content[data-type="outline"] > .view-content {
   border-radius: var(--lg-row-radius);
   corner-shape: var(--lg-rect-shape);
   pointer-events: none;
+}
+
+/* 들여쓰기 세로줄 끄기 (플러그인 설정, body.lg-no-guides, 사용자 요청). 파일 탐색기만 */
+body.lg-no-guides .workspace-leaf-content[data-type="file-explorer"] .tree-item-children::before {
+  content: none;
 }
 
 /* 외곽선만 있는 하이라이트(키보드로 고른 줄 has-focus, 이름 바꾸는 줄)도 호버·선택 하이라이트 폭으로 (사용자 요청):
@@ -1765,8 +2097,8 @@ body:not(.is-phone) .workspace-leaf.mod-active .workspace-leaf-content[data-type
   content: none;
 }
 
-/* 파일 탐색기 호버·선택(다른 곳을 볼 때) 회색: 반투명이면 흰 줄무늬 위에서는 옅고 패널 바탕 위에서는 진해 보여 들쭉날쭉했다
-   (사용자 지적). 패널 바탕에 미리 섞은 불투명한 색으로 칠해, 줄무늬가 있든 없든 같은 진하기로 보이게 한다 */
+/* 파일 탐색기 호버·선택(다른 곳을 볼 때) 회색은 반투명 (사용자 요청): 좌우 패널 투명을 켜면 뒤가 비친다.
+   줄무늬 위에서 진하기가 달라 보이지 않게 하이라이트가 깔린 줄의 줄무늬 막대는 숨긴다(.lg-stripe-hide) */
 /* 진하기는 다른 평평한 호버(--lg-hover-a)보다 진하게 따로 둔다 (사용자 요청) */
 body {
   --lg-row-hl-a: 0.09;
@@ -1777,13 +2109,13 @@ body.theme-dark {
 }
 
 .workspace-leaf-content[data-type="file-explorer"] {
-  --lg-row-hover-solid: color-mix(in srgb, var(--lg-hl) calc(var(--lg-row-hl-a) * 100%), var(--lg-panel-bg));
-  --nav-item-background-hover: var(--lg-row-hover-solid);
+  --lg-row-hover: color-mix(in srgb, var(--lg-hl) calc(var(--lg-row-hl-a) * 100%), transparent);
+  --nav-item-background-hover: var(--lg-row-hover);
 }
 
 @media (hover: hover) {
   body .workspace-leaf-content[data-type="file-explorer"] .tree-item-self.is-clickable:not(.is-active):hover {
-    --lg-row-bg: var(--lg-row-hover-solid);
+    --lg-row-bg: var(--lg-row-hover);
   }
 }
 
@@ -1793,6 +2125,11 @@ body {
 
 body.theme-dark {
   --lg-stripe: rgb(255 255 255 / 0.045);
+}
+
+/* 좌우 패널 투명을 켜면 라이트 줄무늬를 옅게 (사용자 요청): 70% 흰 막대가 패널(70%) 위에 얹히면 그 줄은 약 91% 불투명이라 거의 비치지 않았다 */
+body.lg-acrylic:not(.theme-dark) {
+  --lg-stripe: rgb(255 255 255 / 0.35);
 }
 
 /* 하단 볼트 전환 */
@@ -1963,6 +2300,131 @@ body.lg-ui:not(.is-phone) .workspace-split.mod-root.lg-split-multi .workspace-ta
   z-index: 3;
   isolation: isolate;
   background: transparent;
+}
+
+/* 좌우 패널 투명 (플러그인 설정, body.lg-acrylic, Windows 11, 사용자 요청): 플러그인이 창 바탕을 투명하게 하고 시스템 아크릴 재질을 깐다.
+   body 바탕을 비우고 좌우 패널 바탕을 70%만 남겨 뒤의 바탕화면·창이 흐리게 비친다. 편집창은 제 바탕(불투명)을 그대로 쓴다.
+   패널 바탕색은 라이트는 흰색(사용자 요청, 패널색 #f6f6f6 은 아크릴 위에서 회색으로 보였다), 다크는 패널색 */
+body.lg-acrylic:not(#lg) {
+  --lg-acrylic-base: #fff;
+  background-color: transparent;
+}
+
+body.lg-acrylic.theme-dark:not(#lg) {
+  --lg-acrylic-base: var(--background-secondary);
+}
+
+/* 좌우 패널 위 알약 유리 효과에서 채도 낮추기(--lg-tone)는 뺀다. 굴절은 그대로 (사용자 요청, 패널 투명을 켜고 끄는 것과 관계없이).
+   --lg-haze 는 body 에서 풀린 값이라 패널에서 다시 묶는다 */
+.workspace-split:is(.mod-left-split, .mod-right-split):not(#lg) {
+  --lg-haze: var(--lg-pill-blur) var(--lg-bright,);
+}
+
+body.lg-acrylic .workspace-split.mod-sidedock:not(#lg) {
+  background-color: color-mix(in srgb, var(--lg-acrylic-base) 70%, transparent);
+}
+
+/* 패널 위 알약·버튼 밑 구멍 (플러그인 .lg-holes, 사용자 요청). 패널 바탕은 패널 밖 바로 뒤의 층(플러그인 .lg-panel-under, 패널 자리·크기를 따라간다)에
+   칠하고, 플러그인이 문서 안에 둔 패널별 SVG 마스크(#lg-holes-left, #lg-holes-right)로 버튼 모양만큼 비워 창 뒤 아크릴이 버튼으로 비치게 한다.
+   패널 자신은 유리가 뒤를 떠 오는 범위(backdrop root, opacity 가 1 미만이면 그 요소가 기준)라, 모든 버튼이 패널 안 내용만 굴절하고
+   바탕을 떠 와 덧그리지 않는다(덧그리면 그 자리가 두 겹: 측정 70% → 91%). 보관함 줄 버튼도 위의 목록을 굴절한다 */
+body.lg-acrylic .workspace-split.mod-sidedock.lg-holes:not(#lg) {
+  background-color: transparent;
+  opacity: 0.999;
+  /* 접기·펴기가 끝나 불투명 막(.lg-under-busy)이 풀릴 때 투명이 툭 켜지지 않게 서서히 비친다 (사용자 요청). 막을 칠 때는 바로 (아래 규칙).
+     transition 으로 하면 Obsidian 의 패널 너비 전환을 덮어써 애니메이션 이름이 바뀔 때 한 번 도는 animation 으로 한다 */
+  animation: lg-under-fade 280ms ease;
+}
+
+@keyframes lg-under-fade {
+  from {
+    background-color: var(--background-secondary);
+  }
+
+  to {
+    background-color: transparent;
+  }
+}
+
+/* 화면 내보내기 우회 (설계 목적 "투명 패널 화면 깨짐은 다시 내보내기로 우회"): 패널 왼쪽 위·오른쪽 아래 끝의 눈에 안 보이는 1px 점.
+   화면이 바뀔 만한 일이 생기면 플러그인이 .lg-damage 를 붙이고, 그동안 점의 투명도가 매 프레임 조금씩 바뀐다.
+   투명도 애니메이션은 GPU(합성기)에서 돌아 메인 스레드가 매 프레임 일하지 않는다 */
+.lg-dmg-dot {
+  position: fixed;
+  z-index: 9999;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  background-color: rgb(128 128 128 / 0.008);
+  opacity: 0.5;
+}
+
+.lg-dmg-dot.lg-damage {
+  will-change: opacity;
+  animation: lg-dmg-blink 1s linear infinite alternate;
+}
+
+@keyframes lg-dmg-blink {
+  from {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.lg-panel-under {
+  position: fixed;
+  z-index: 4;
+  pointer-events: none;
+  background-color: color-mix(in srgb, var(--lg-acrylic-base) 70%, transparent);
+  mask-image: url("#lg-holes-left");
+}
+
+.lg-panel-under.lg-holes-right {
+  mask-image: url("#lg-holes-right");
+}
+
+/* 패널을 접고 펴는 동안(플러그인 .lg-under-busy)은 바탕 층을 숨기고 패널을 불투명한 패널색으로 막는다 (사용자 요청) */
+.lg-panel-under.lg-busy {
+  display: none;
+}
+
+body.lg-acrylic .workspace-split.mod-sidedock.lg-holes.lg-under-busy:not(#lg):not(#lg) {
+  background-color: var(--background-secondary);
+  animation: none;
+}
+
+/* 맥 (Obsidian 반투명 창 body.is-translucent 를 플러그인이 따라 body.lg-acrylic): Obsidian 은 창 전체(.app-container)에 바탕색 막을 덮어
+   재질이 거의 비치지 않았다(측정). 막을 비우고 좌우 패널 바탕(70%)만 남겨 Windows 와 같게 한다. 편집창은 제 바탕(불투명) 그대로 */
+body.lg-acrylic.is-translucent .app-container:not(#lg) {
+  background-color: transparent;
+  /* 굴절(SVG 뒤 필터)이 창 맨 바닥을 떠 오는 프레임에서 맥은 패널 자리를 지우지 않고 이전 화면 위에 반투명 바탕을 덧칠해,
+     호버·스크롤 때 패널이 불투명하게 꽉 찼다(측정: 30% 빨강 바탕이 프레임마다 (249,172,172) → (251,120,120) → (252,84,84) 로 쌓임).
+     창 전체를 뒤 필터 기준(backdrop root)으로 묶으면 생기지 않았다(측정: 호버·스크롤 모두 투명 유지). 원인은 Chromium 맥 합성 경로로 추정.
+     Chromium(Obsidian 설치 파일)이나 macOS 가 바뀌면 다시 확인한다 (설계 목적 "맥은 Obsidian 반투명 창을 따른다") */
+  opacity: 0.999;
+}
+
+/* 맥: 패널 바탕을 칠하지 않는다(0%). 패널 색은 Obsidian 이 까는 사이드바 재질이 정한다 (사용자 결정).
+   반투명 바탕(70%)은 유리(뒤 필터)를 다시 그리는 프레임에 macOS 가 지우지 않고 이전 화면 위에 덧칠해, 탭을 바꿀 때마다 패널이
+   불투명하게 깜빡였다(맥 러너 측정). 투명은 덧칠돼도 투명이다. 바탕 층과 구멍도 쓰지 않는다(플러그인) */
+body.lg-acrylic.is-translucent .workspace-split.mod-sidedock:not(#lg):not(#lg) {
+  background-color: transparent;
+}
+
+/* 맥: 재질이나 창 라이트·다크가 바뀐 뒤 예전 화면이 남았다(측정). 플러그인이 두 프레임 붙이는 클래스로 앱 화면을 다시 그리게 한다 */
+body.lg-vib-nudge.is-translucent .app-container:not(#lg):not(#lg) {
+  opacity: 0.998;
+}
+
+.lg-holes-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 /* 탭 줄 뒤 유리판 (플러그인이 넣는다). 편집창 배경색을 따른다: 뒤에 아무것도 없으면 편집창 배경색 그대로이고,
@@ -2250,7 +2712,7 @@ body:not(.lg-show-path).lg-mini-bar:not(.is-phone) .mod-root .workspace-tabs.lg-
   pointer-events: none;
 }
 
-body.lg-mini-bar:not(.is-phone) .mod-root .workspace-tabs.lg-mini:not(.mod-stacked) .lg-path-pill :is(.view-header-title-parent, .lg-path-menu):not(#lg) {
+body.lg-mini-bar:not(.is-phone) .mod-root .workspace-tabs.lg-mini:not(.mod-stacked) .lg-path-pill :is(.view-header-title-parent, .lg-path-menu, .view-header-reload-button):not(#lg) {
   display: none;
 }
 
@@ -2339,7 +2801,7 @@ body.lg-mini-bar:not(.is-phone) .mod-root .workspace-tabs.lg-mini:not(.mod-stack
   transition: width 240ms var(--lg-ease-move);
 }
 
-.lg-path-pill.lg-path-web:focus-within:not(#lg) {
+.lg-path-pill.lg-path-web.lg-web-typing:not(#lg) {
   width: min(calc(var(--lg-tab-w) * 2.5), 100%);
 }
 
@@ -2349,8 +2811,64 @@ body.lg-mini-bar:not(.is-phone) .mod-root .workspace-tabs.lg-mini:not(.mod-stack
   transition: padding 240ms var(--lg-ease-move);
 }
 
-.lg-path-pill.lg-path-web:focus-within > .lg-path-text:not(#lg) {
+.lg-path-pill.lg-path-web.lg-web-typing > .lg-path-text:not(#lg) {
   padding-inline-start: 0;
+}
+
+/* 경로 알약의 웹 주소 표시 (플러그인 .lg-web-url): 고치지 않을 때는 도메인만 (전체 주소는 누를 때만).
+   입력칸 위에 덮고(누름은 입력칸으로), 그동안 입력칸 글자는 투명하게 둔다. 고치는 동안(입력칸 포커스, 플러그인 .lg-web-typing)에는 숨긴다 */
+.lg-path-text > .webviewer-address:not(#lg) {
+  position: relative;
+}
+
+.lg-web-url {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  font-size: var(--font-ui-small);
+  color: var(--text-muted);
+}
+
+.workspace-tabs.lg-mini .lg-web-url {
+  color: var(--text-normal);
+}
+
+.lg-path-pill.lg-path-web:not(.lg-web-typing) > .lg-path-text > .webviewer-address > input:not(#lg):not(#lg):not(#lg) {
+  color: transparent;
+}
+
+.lg-path-pill.lg-path-web.lg-web-typing .lg-web-url {
+  display: none;
+}
+
+/* 접힌 탭 줄의 웹 경로 알약: 도메인 길이에 맞춘다 (사용자 요청). 표시(.lg-web-url)가 폭을 정하고 입력칸은 그 위에 덮는다 */
+body.lg-mini-bar:not(.is-phone) .mod-root .workspace-tabs.lg-mini:not(.mod-stacked) .lg-path-pill.lg-path-web:not(#lg):not(#lg) {
+  width: auto;
+}
+
+body.lg-mini-bar:not(.is-phone) .mod-root .workspace-tabs.lg-mini:not(.mod-stacked) .lg-path-pill.lg-path-web > .lg-path-text:not(#lg):not(#lg) {
+  padding-inline-start: 0;
+}
+
+body.lg-mini-bar:not(.is-phone) .mod-root .workspace-tabs.lg-mini:not(.mod-stacked) .lg-path-text > .webviewer-address:not(#lg):not(#lg) {
+  flex: 0 0 auto;
+}
+
+body.lg-mini-bar:not(.is-phone) .mod-root .workspace-tabs.lg-mini:not(.mod-stacked) .lg-path-text > .webviewer-address > input:not(#lg):not(#lg):not(#lg) {
+  position: absolute;
+  inset: 0;
+}
+
+body.lg-mini-bar:not(.is-phone) .mod-root .workspace-tabs.lg-mini:not(.mod-stacked) .lg-web-url {
+  position: static;
+  padding: 0;
 }
 
 :is(.lg-path-text, .lg-web-card) > .webviewer-address:not(#lg) {
@@ -2455,13 +2973,13 @@ body.lg-mini-bar:not(.is-phone) .mod-root .workspace-tabs.lg-mini:not(.mod-stack
   visibility: hidden;
 }
 
-/* 제안 목록: 배경 없이, 늘어난 판 안 자리에 (자리는 플러그인이 잰다). Obsidian 이 인라인으로 넣는 자리를 덮으므로 important 선언 */
+/* 제안 목록: 배경 없이, 늘어난 판 안 자리에 (자리는 플러그인이 잰다, placeSugg) */
 body .suggestion-container.lg-web-sugg.lg-sugg-in:not(#lg) {
   position: fixed;
-  left: var(--lg-sl) !important;
-  top: var(--lg-st) !important;
-  width: var(--lg-sw) !important;
-  max-width: var(--lg-sw) !important;
+  /* 자리: Obsidian 이 요소에 넣는 left·top 에서 플러그인이 잰 차이만큼 옮긴다. 폭: 최소·최대 폭을 같게 두면 Obsidian 이 넣는 width 를 이긴다 */
+  translate: var(--lg-sx, 0px) var(--lg-sy, 0px);
+  min-width: var(--lg-sw);
+  max-width: var(--lg-sw);
   background: transparent;
   border: none;
   box-shadow: none;
@@ -2619,8 +3137,9 @@ body .suggestion-container.lg-web-sugg.lg-sugg-in:not(#lg) .suggestion-item.is-s
   position: absolute;
   top: calc(50% - 9px);
   bottom: auto;
-  inset-inline-start: calc(var(--lg-tab-gap) / -2 - 0.5px);
-  width: 1px;
+  /* 두께는 정수 px: 1.5px 처럼 화면 픽셀로 나눠떨어지지 않으면 줄마다 1·2픽셀로 반올림돼 굵기가 달라 보였다 (사용자 지적) */
+  inset-inline-start: calc(var(--lg-tab-gap) / -2 - 1px);
+  width: 2px;
   height: 18px;
   border-radius: 1px;
   box-shadow: none;
@@ -2827,15 +3346,16 @@ body:not(.is-mobile) .mod-root .workspace-tab-header-container > .sidebar-toggle
   align-items: center;
 }
 
+/* 높이를 알약 높이에 맞춰야 알약 반지름(높이의 절반)이 맞아 끝이 둥글다 (36px 일 때는 반지름이 모자라 사각형처럼 보였다) */
 .view-header-nav-buttons {
   padding: 2px;
   gap: 0;
-  height: 36px;
+  height: var(--lg-pill-h);
 }
 
 .view-header-nav-buttons .clickable-icon {
   width: 38px;
-  height: 32px;
+  height: calc(var(--lg-pill-h) - 4px);
   padding: 0;
 }
 
@@ -3135,6 +3655,12 @@ body.is-popout-modal .titlebar .titlebar-text:not(#lg) {
   --input-radius: 12px;
   --button-radius: 999px;
   --dropdown-radius: 12px;
+}
+
+/* 설정 줄의 드롭다운·토글 등은 이름·설명 높이의 가운데에 둔다 (사용자 요청). Obsidian 은 줄 위쪽에 붙여 설명이 두 줄이면 위로 치우쳐 보였다.
+   휴대폰은 줄을 세로로 쌓는 경우가 있어 Obsidian 그대로 */
+body:not(.is-phone) .modal.mod-settings .setting-item:not(.setting-item-heading) {
+  align-items: center;
 }
 
 /* 앱 안에 뜨는 설정 창: 다른 대화상자처럼 둥근 사각형 곡률 (사용자 요청). 안쪽 목록·본문 바탕이 모서리 밖으로 삐져나오지 않게 자른다.
@@ -3574,6 +4100,15 @@ body:not(.is-mobile) .workspace-sidedock-vault-profile .workspace-drawer-vault-s
   transition: transform 460ms var(--lg-spring);
 }
 
+/* 알약·원형 버튼 안 기호 크기: Obsidian 기본 16px 에서 18px 로 (사용자 요청, 애플식으로 기호를 크게) */
+/* Obsidian 은 기호(svg)에 크기 변수를 직접 두므로 svg 에 건다 */
+body:not(.is-mobile) .clickable-icon > .svg-icon:not(#lg),
+body:not(.is-mobile) :is(.mod-left-split, .mod-right-split) .workspace-tab-header-container .workspace-tab-header-inner-icon > .svg-icon:not(#lg) {
+  --icon-size: 18px;
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
 /* 아이콘(기호)도 커서를 따라 조금 끌려간다 */
 .clickable-icon:not(.lg-tab-menu):not(.workspace-tab-header-inner-close-button) > svg,
 .titlebar-button-container.mod-right .titlebar-button > svg,
@@ -3599,6 +4134,15 @@ body .sidebar-toggle-button.mod-right .clickable-icon:not(#lg):not(.lg-tab-menu)
 
 body .sidebar-toggle-button.mod-right .clickable-icon:not(#lg):not(.lg-tab-menu):not(.workspace-tab-header-inner-close-button) > svg {
   transform: translate(calc(var(--lg-mx, 0px) * -0.6), calc(var(--lg-my, 0px) * 0.6));
+}
+
+/* 좌우 패널 투명(구멍을 쓰는 패널, 플러그인 .lg-holes) 위 버튼은 호버 유리 필터를 늘 달아 둔다 (시험): 호버를 벗어나는 순간 필터를 떼면
+   흐려지는 동안 호버 유리가 잠깐 까맣게 보였다 (사용자 지적, 원인은 추정) */
+.lg-holes .clickable-icon:not(.lg-tab-menu):not(.workspace-tab-header-inner-close-button)::before,
+.lg-holes .workspace-drawer-vault-switcher::before,
+.lg-holes .workspace-tab-header-container .workspace-tab-header::before {
+  -webkit-backdrop-filter: var(--lg-refract-h,) var(--lg-tone) var(--lg-bright-h,);
+  backdrop-filter: var(--lg-refract-h,) var(--lg-tone) var(--lg-bright-h,);
 }
 
 /* 파일 목록·개요 항목, 상태 표시줄: 유리 층 없이 평평한 회색 */
@@ -4108,6 +4652,12 @@ body .suggestion-container:not(.lg-sugg-in):not(#lg) .suggestion-item.is-selecte
 }
 
 /* 알림 (오른쪽 위에 잠깐 뜨는 것) */
+/* 알림 묶음(Obsidian .notice-container)은 넘치는 부분을 잘라(overflow: hidden, 안쪽 여백 10px) 메뉴와 같은 넓은 그림자(아래로 24px, 흐림 80px)가
+   사각형으로 잘렸다 (사용자 지적). 잘라내지 않게 둔다 */
+body .notice-container:not(#lg) {
+  overflow: visible;
+}
+
 body .notice:not(#lg) {
   /* 한 줄일 때 알약 비율: 높이 H = 1lh + 위아래 여백 */
   --lg-n-h: calc(1lh + 20px);
@@ -4252,6 +4802,22 @@ body.is-mobile .workspace-drawer .workspace-leaf-content[data-type="search"] .se
   z-index: 3;
 }
 
+/* 패널 검색창 자리 (데스크톱): 탭 줄(아래 여백 --lg-gap 포함) 바로 밑에 붙여 탭 알약과 --lg-gap 만큼, 좌우는 패널 끝에서 --lg-gap.
+   검색 탭은 Obsidian 기본 여백(위·좌우 12px)이라 탭 알약과 22px 떨어졌고, 개요·북마크 등의 머리 줄 검색창도 위 여백이 더해져 같았다 */
+body.lg-ui:not(.is-mobile) .workspace-leaf-content[data-type="search"] > .search-row:not(#lg) {
+  margin: 0 var(--lg-gap) 8px;
+}
+
+body.lg-ui:not(.is-mobile) :is(.mod-left-split, .mod-right-split) .workspace-leaf-content:not(.lg-bare-head) > .nav-header:not(#lg) {
+  padding: 0 var(--lg-gap) 8px;
+}
+
+body.lg-ui:not(.is-mobile) :is(.mod-left-split, .mod-right-split) .workspace-leaf-content > .nav-header > .search-input-container:not(#lg) {
+  width: auto;
+  margin: 0;
+}
+
+
 .lg-ui .workspace-leaf-content[data-type="search"] .search-input-container {
   position: relative;
   isolation: isolate;
@@ -4296,13 +4862,13 @@ body.lg-ui .workspace-leaf-content[data-type="search"] .search-input-container i
   backdrop-filter: blur(var(--lg-menu-blur)) var(--lg-menu-tone);
 }
 
-/* 제안 목록: 배경 없이, 늘어난 검색창 안 자리에 (자리는 플러그인이 잰다). Obsidian 이 인라인으로 넣는 자리를 덮으므로 important 선언 */
+/* 제안 목록: 배경 없이, 늘어난 검색창 안 자리에 (자리는 플러그인이 잰다, placeSugg) */
 body .suggestion-container.mod-search-suggestion.lg-sugg-in:not(#lg) {
   position: fixed;
-  left: var(--lg-sl) !important;
-  top: var(--lg-st) !important;
-  width: var(--lg-sw) !important;
-  max-width: none;
+  /* 자리: Obsidian 이 요소에 넣는 left·top 에서 플러그인이 잰 차이만큼 옮긴다. 폭: 최소·최대 폭을 같게 두면 Obsidian 이 넣는 width 를 이긴다 */
+  translate: var(--lg-sx, 0px) var(--lg-sy, 0px);
+  min-width: var(--lg-sw);
+  max-width: var(--lg-sw);
   background: transparent;
   border: none;
   box-shadow: none;
@@ -4365,6 +4931,41 @@ body {
 
 body.lg-ui .lg-scrolling {
   --lg-sb: var(--scrollbar-thumb-bg);
+}
+
+/* 맥 컴퓨터: Obsidian 은 맥에서 스크롤바를 꾸미지 않아(body.styled-scrollbars 없음) macOS 기본 스크롤바가 나왔다. 기본 스크롤바에는
+   위 여백(::-webkit-scrollbar-track 의 margin)이 먹지 않아 편집창 스크롤바가 탭 줄 뒤까지 올라갔다 (사용자 지적, 맥 러너 확인).
+   다른 컴퓨터와 같게 Obsidian 의 styled-scrollbars 규칙을 맥에도 건다. 표준 속성(scrollbar-width·color)이 걸려 있으면 Chromium 이
+   ::-webkit-scrollbar 를 무시하므로 먼저 auto 로 되돌린다(:where 로 우선순위 0, 테마가 개별로 숨긴 스크롤바는 그대로) */
+:where(body.mod-macos:not(.is-mobile)),
+:where(body.mod-macos:not(.is-mobile)) * {
+  scrollbar-width: auto;
+  scrollbar-color: auto;
+}
+
+body.mod-macos:not(.is-mobile) ::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-height);
+  -webkit-border-radius: var(--scrollbar-radius);
+  background-color: transparent;
+}
+
+body.mod-macos:not(.is-mobile) ::-webkit-scrollbar-track,
+body.mod-macos:not(.is-mobile) ::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+body.mod-macos:not(.is-mobile) ::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-bg);
+  -webkit-border-radius: var(--scrollbar-radius);
+  background-clip: padding-box;
+  border: var(--scrollbar-border-width) solid transparent;
+  min-height: 45px;
+}
+
+body.mod-macos:not(.is-mobile) ::-webkit-scrollbar-thumb:hover,
+body.mod-macos:not(.is-mobile) ::-webkit-scrollbar-thumb:active {
+  background-color: var(--scrollbar-active-thumb-bg);
 }
 
 /* 휴대폰·태블릿 스크롤바 (사용자 요청): 시스템 기본은 가는 선이라, 컴퓨터보다는 가늘게 막대 8px + 양쪽 투명 테두리 2px,
@@ -4797,14 +5398,16 @@ body.theme-dark .callout:not(#lg) {
    ========================================================= */
 body {
   --lg-hrule: #000;
-  --lg-hrule-w: 1px;
+  /* 두께는 화면 픽셀 배수로 반올림한다(--lg-dpx: 플러그인이 주는 화면 한 픽셀 길이, 없으면 1px).
+     125% 배율에서 1px 은 1.25픽셀이라 선이 놓인 높이에 따라 1픽셀·2픽셀로 번갈아 그려져 줄마다 두께가 달라 보였다 (사용자 지적) */
+  --lg-hrule-w: round(1px, var(--lg-dpx, 1px));
   --lg-hrule-gap: 0.3em; /* 제목 글자 ↔ 가로줄 */
   --lg-hrule-below: 0.1em; /* 가로줄 ↔ 본문 */
 }
 
 /* 휴대폰: 1px 이 화면에서 실제로 더 가늘어 얇아 보였다 (사용자 지적). 1.5px 로 */
 body.is-phone {
-  --lg-hrule-w: 1.5px;
+  --lg-hrule-w: round(1.5px, var(--lg-dpx, 1px));
 }
 
 body.theme-dark {
@@ -4864,6 +5467,8 @@ body.lg-hrule .markdown-source-view.mod-cm6 :is(.HyperMD-header-1, .HyperMD-head
 body {
   --lg-quote-w: 4px;
   --lg-quote-color: color-mix(in srgb, var(--lg-hl, rgb(var(--lg-ink))) 30%, transparent);
+  /* 라이브 미리보기 막대는 줄마다 그려 다음 줄이 위 줄 끝을 덮으므로, 겹쳐도 진해지지 않게 배경과 미리 섞은 불투명 색 (보이는 색은 같다) */
+  --lg-quote-color-lp: color-mix(in srgb, var(--lg-hl, rgb(var(--lg-ink))) 30%, var(--background-primary));
 }
 
 .markdown-rendered blockquote:not(#lg) {
@@ -4888,7 +5493,7 @@ body {
 .markdown-source-view.mod-cm6 .cm-blockquote-border:not(#lg)::before {
   width: var(--lg-quote-w);
   border-inline-start: none;
-  background-color: var(--lg-quote-color);
+  background-color: var(--lg-quote-color-lp);
 }
 
 .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote:not(.HyperMD-quote + .HyperMD-quote):not(#lg)::before {
@@ -4897,10 +5502,16 @@ body {
   border-start-end-radius: 999px;
 }
 
-.markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote:not(:has(+ .HyperMD-quote)):not(#lg)::before {
+/* 마지막 줄의 아래 둥근 끝: 모든 줄의 아래를 둥글게 그리고, 다음 줄이 그 끝(막대 폭 + 3px)까지 위로 올라와 덮는다.
+   그래서 이어진 줄은 한 알약으로 보이고 마지막 줄만 끝이 둥글다 (다음 줄이 있는지를 부모 선택자로 보지 않는다, 스토어 린트 권고) */
+.markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote:not(#lg)::before {
   bottom: 3px;
   border-end-start-radius: 999px;
   border-end-end-radius: 999px;
+}
+
+.markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote + .HyperMD-quote:not(#lg)::before {
+  top: calc((var(--lg-quote-w) + 3px) * -1);
 }
 
 /* =========================================================
@@ -5660,6 +6271,88 @@ body.is-tablet .workspace-drawer .workspace-leaf-content:not([data-type="file-ex
   padding-top: var(--lg-dtab-area);
 }
 
+/* 태블릿 목록 (탭 전환 효과 "목록", 사용자 요청): 서랍 위에 떠 있는 보기 전환 알약 대신, 데스크톱 목록처럼
+   보기를 한 줄에 하나씩(강조색 기호 + 이름) 서랍 맨 위에 늘어놓고 그 아래에서 목록이 시작한다.
+   고른 서랍에 플러그인이 .lg-tab-list 를 붙인다. 고른 보기는 강조색 알약, 보기가 하나뿐이면 하이라이트하지 않는다 */
+body.is-tablet .workspace-drawer.lg-tab-list {
+  --lg-dtab-area: 0px;
+}
+
+body.is-tablet .workspace-drawer.lg-tab-list .workspace-drawer-tab-options:not(#lg):not(#lg):not(#lg) {
+  position: static;
+  flex-direction: column;
+  margin: var(--lg-edge-gap) var(--lg-edge-gap) var(--lg-gap);
+  pointer-events: auto;
+}
+
+body.is-tablet .workspace-drawer.lg-tab-list .workspace-drawer-tab-options .workspace-drawer-tab-options-list:not(#lg):not(#lg):not(#lg) {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+  width: auto;
+  padding: 0;
+  overflow: visible;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+body.is-tablet .workspace-drawer.lg-tab-list .workspace-drawer-tab-options-list > .workspace-tab-header:not(#lg):not(#lg):not(#lg) {
+  width: auto;
+  height: var(--lg-pill-h);
+}
+
+body.is-tablet .workspace-drawer.lg-tab-list .workspace-drawer-tab-options-list > .workspace-tab-header:not(#lg):not(#lg):not(#lg) .workspace-tab-header-inner {
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 0 12px;
+  border-radius: calc(var(--lg-pill-h) * var(--lg-pill-rx)) / calc(var(--lg-pill-h) / 2);
+}
+
+body.is-tablet .workspace-drawer.lg-tab-list .workspace-drawer-tab-options-list > .workspace-tab-header:not(#lg):not(#lg):not(#lg) .workspace-tab-header-inner-icon {
+  --icon-color: var(--interactive-accent);
+  color: var(--interactive-accent);
+}
+
+body.is-tablet .workspace-drawer.lg-tab-list .workspace-drawer-tab-options-list > .workspace-tab-header:not(#lg):not(#lg):not(#lg) .workspace-tab-header-inner-icon .svg-icon {
+  --icon-size: 20px;
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+body.is-tablet .workspace-drawer.lg-tab-list .workspace-drawer-tab-options-list > .workspace-tab-header:not(#lg):not(#lg):not(#lg) .workspace-tab-header-inner-title {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0;
+  font-size: var(--font-ui-medium);
+  font-weight: 600;
+  color: var(--text-normal);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.is-tablet .workspace-drawer.lg-tab-list .workspace-drawer-tab-options-list > .workspace-tab-header.is-active:not(:only-child):not(#lg):not(#lg):not(#lg) .workspace-tab-header-inner {
+  background-color: var(--interactive-accent);
+}
+
+body.is-tablet .workspace-drawer.lg-tab-list .workspace-drawer-tab-options-list > .workspace-tab-header.is-active:not(:only-child):not(#lg):not(#lg):not(#lg) :is(.workspace-tab-header-inner-icon, .workspace-tab-header-inner-title) {
+  --icon-color: var(--lg-tab-on-ink, #fff);
+  color: var(--lg-tab-on-ink, #fff);
+}
+
+body.is-tablet .workspace-drawer.lg-tab-list .workspace-drawer-tab-options-list > .workspace-tab-header.is-active:only-child:not(#lg):not(#lg):not(#lg) .workspace-tab-header-inner {
+  background-color: transparent;
+}
+
+/* 목록은 유리가 아니라 뒤로 지나가는 내용이 없다: 알약 뒤 그라데이션을 없앤다 */
+body.is-tablet .workspace-drawer.lg-tab-list .workspace-drawer-active-tab-container:not(#lg)::before {
+  content: none;
+}
+
 /* 목록 아래 그라데이션(Obsidian 의 떠 있는 탐색 막대 모드)은 없앤다 */
 body.is-tablet .workspace-drawer .workspace-leaf-content:not(#lg)::after {
   content: none;
@@ -5895,7 +6588,7 @@ body .tree-item-self.is-being-dragged:not(#lg):not(#lg),
 body:not(.is-grabbing) .tree-item-self.is-being-dragged:hover:not(#lg):not(#lg) {
   color: var(--nav-item-color);
   background-color: color-mix(in srgb, var(--lg-hl) calc(var(--lg-hover-a) * 100%), transparent);
-  --lg-row-bg: var(--lg-row-hover-solid, transparent);
+  --lg-row-bg: var(--lg-row-hover, transparent);
   box-shadow: none;
 }
 
@@ -5906,6 +6599,11 @@ body .tree-item-self.is-being-dragged :is(.tree-item-icon, .nav-file-tag):not(#l
 /* 좌우 패널 목록 글자 굵기 (파일 탐색기·검색·책갈피 등의 줄, 사용자 요청) */
 .workspace-split:not(.mod-root) .tree-item-self {
   font-weight: 450;
+}
+
+/* 파일 탐색기 스타일 심플(플러그인 body.lg-ficon-line)에서는 문서 줄만 400 (사용자 요청) */
+body.lg-ficon-line .workspace-split:not(.mod-root) .nav-file-title {
+  font-weight: 400;
 }
 
 /* =========================================================
@@ -6006,6 +6704,107 @@ body.is-mobile .nav-file-title-content::before {
   vertical-align: -0.185em;
 }
 
+/* 파일 탐색기 아이콘 설정 (플러그인, 사용자 요청). 없음(body.lg-ficon-none): 폴더·문서 모두 기호 없이 이름만.
+   심플(body.lg-ficon-line): 폴더에만 Obsidian 의 닫힌 폴더 기호(선 하나, 플러그인이 떠 준 --lg-folder-line 마스크)를 폴더 색으로 칠하고,
+   문서에는 붙이지 않고, 문서 이름은 같은 단계 폴더 이름 시작에 맞춘다 (사용자 요청).
+   폴더 색은 이름별 색(--lg-fc) → 폴더 아이콘 색 설정(--lg-folder-tint) → 기본 파랑 순 */
+body.lg-ficon-none :is(.nav-folder-title-content, .nav-file-title-content)::before,
+body.lg-ficon-line .nav-file-title-content::before {
+  content: none;
+}
+
+body.lg-ficon-none :is(.nav-folder-title-content, .nav-file-title-content),
+body.lg-ficon-line .nav-file-title-content {
+  margin-inline-start: 0;
+}
+
+body.lg-ficon-none .tree-item-self.is-being-renamed > :is(.nav-folder-title-content, .nav-file-title-content),
+body.lg-ficon-line .tree-item-self.is-being-renamed > .nav-file-title-content {
+  padding-inline-start: 0;
+}
+
+/* 심플 폴더 기호 폭 (문서 이름 맞춤에도 쓴다) */
+body.lg-ficon-line {
+  --lg-fline-w: 20px;
+}
+
+body.is-mobile.lg-ficon-line {
+  --lg-fline-w: 1.15em;
+}
+
+body.lg-ficon-line .nav-folder-title-content {
+  --lg-ficon-w: var(--lg-fline-w);
+}
+
+/* 심플: 폴더 기호가 탭 목록의 기호(20px)만큼 되도록 목록 글자·기호를 1.25배로 (사용자 요청) */
+body.lg-ficon-line .workspace-leaf-content[data-type="file-explorer"] {
+  --nav-item-size: calc(var(--font-ui-small) * 1.25);
+}
+
+body.lg-ficon-line .nav-folder-title-content::before {
+  width: var(--lg-fline-w);
+  height: var(--lg-fline-w);
+  vertical-align: -0.2em;
+  background: var(--lg-fc, var(--lg-folder-tint, #3f97dc));
+  -webkit-mask: var(--lg-folder-line) center / contain no-repeat;
+  mask: var(--lg-folder-line) center / contain no-repeat;
+}
+
+/* 심플: 펼침 화살표는 줄 오른쪽 끝으로 보내고, 폴더 기호가 화살표가 있던 자리(줄 왼쪽 여백 안)로 당겨 온다 (사용자 요청).
+   Obsidian 은 화살표를 줄 왼쪽 여백(padding-inline-start)에 절대 위치로 둔다. 이름이 화살표 밑으로 들어가지 않게 오른쪽 여백을 화살표만큼 늘린다 */
+/* 화살표 오른쪽 끝은 호버 알약 오른쪽 끝에서, 폴더 기호 왼쪽 끝이 알약 왼쪽 끝에서 떨어진 만큼(12.6px, 측정) 안쪽에 둔다 (사용자 요청).
+   알약은 줄보다 --lg-row-ext-r 만큼 오른쪽으로 더 늘어난다 */
+body.lg-ficon-line .nav-folder-title > .collapse-icon:not(#lg):not(#lg) {
+  inset-inline-start: auto;
+  inset-inline-end: calc(12.6px - var(--lg-row-ext-r, 0px));
+  margin-inline-start: 0;
+}
+
+body.lg-ficon-line .nav-folder-title:not(#lg):not(#lg) {
+  padding-inline-end: calc(8px + 16px + 6px);
+}
+
+/* 심플: 들여쓰기 세로줄 2px, 옅게(투명도 0.6) (사용자 요청).
+   하위 목록 테두리는 같은 굵기를 화면 픽셀 배수로 내려 그린다(--lg-guide-b, 125% 화면 1.6px) */
+body.lg-ficon-line {
+  --nav-indentation-guide-width: 2px;
+  --lg-guide-b: round(down, var(--nav-indentation-guide-width), var(--lg-dpx, 1px));
+}
+
+body.lg-ficon-line .tree-item-children::before {
+  opacity: 0.6;
+}
+
+/* 폴더 기호는 화살표 자리(줄 왼쪽 여백 안)로 당겨, 기호 가운데가 그 폴더의 들여쓰기 세로줄에 오게 한다 (사용자 요청).
+   세로줄 가운데는 줄 왼쪽 여백 끝에서 12px - 테두리 + 굵기의 절반만큼 왼쪽 (측정) */
+body.lg-ficon-line .nav-folder-title > .nav-folder-title-content:not(#lg):not(#lg) {
+  margin-inline-start: calc(-12px + var(--lg-guide-b) - var(--nav-indentation-guide-width) / 2 - var(--lg-fline-w) / 2);
+}
+
+/* 목록 전체를 오른쪽으로 옮겨 맨 위 단계 폴더 기호를 위 탭 목록의 기호(20px, 패널 왼쪽에서 22px)와 같은 세로줄에 둔다 (사용자 요청).
+   목록 왼쪽 여백 12px 에 7.7px(측정)를 더한다. 줄 하이라이트·줄무늬는 플러그인이 줄마다 목록 왼쪽 끝까지 늘려 그대로다.
+   여백은 화면 픽셀 배수로 반올림한다(--lg-dpx: 플러그인이 주는 화면 한 픽셀 길이): 125% 화면에서 들여쓰기 세로줄(1px = 화면 1.25칸)이
+   픽셀 경계에서 더 어긋나 두껍게 번져 보였다 (사용자 지적) */
+body.lg-ficon-line .workspace-leaf-content[data-type="file-explorer"] > .nav-files-container:not(#lg):not(#lg) {
+  padding-inline-start: round(27.1px, var(--lg-dpx, 1px));
+}
+
+/* 맨 위 단계 문서(담은 폴더 없음) 이름은 같은 단계 폴더 이름 시작에 맞춘다: 폴더 이름 = 줄 여백 + 위 당김 + 기호 폭 + 6px */
+body.lg-ficon-line .nav-file-title > .nav-file-title-content:not(#lg):not(#lg) {
+  margin-inline-start: calc(var(--lg-fline-w) / 2 - 6px + var(--lg-guide-b) - var(--nav-indentation-guide-width) / 2);
+}
+
+/* 폴더 안 문서 이름은 자기를 담은 폴더의 이름 시작에 맞춘다 (사용자 요청). 한 단계 들여쓰기 = 하위 목록 여백 16px + 테두리(세로줄 굵기, 화면 픽셀 배수로 내림) */
+body.lg-ficon-line .tree-item-children > .nav-file > .nav-file-title > .nav-file-title-content:not(#lg):not(#lg) {
+  margin-inline-start: calc(var(--lg-fline-w) / 2 - 22px - var(--nav-indentation-guide-width) / 2);
+}
+
+body.is-mobile.lg-ficon-line .nav-folder-title-content::before {
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.2em;
+}
+
 /* =========================================================
    Kanban 플러그인 (obsidian-kanban) 연동: 플러그인은 그대로 두고 테마에서 모양만 바꾼다
    - 카드·카드 추가 버튼: 알약 (높이 --lg-pill-h, 끝이 반원). 여러 줄 카드는 같은 반지름의 둥근 사각형
@@ -6026,6 +6825,13 @@ body {
   background-color: var(--lg-glass-fill);
   background-image: var(--lg-sheen);
   box-shadow: var(--lg-rim), var(--lg-shadow);
+}
+
+/* 보드 위 버튼 줄: Kanban 이 머리 줄을 늘 보이게 하는데(display: flex !important) Obsidian 기본 높이(약 89px)라 버튼이 탭 줄에서
+   멀리 떠 있었다 (사용자 지적). 버튼 높이로 줄여 탭 줄 띠 아래 --lg-gap, 오른쪽 끝도 --lg-gap 에 둔다 */
+body.lg-ui:not(.is-phone) .mod-root .workspace-leaf-content[data-type="kanban"] > .view-header:not(#lg) {
+  height: auto;
+  padding: var(--lg-gap) var(--lg-gap) 0;
 }
 
 /* 머리줄·버튼 줄의 가로 경계선은 없앤다 (유리판 하나로 보이게) */
@@ -6059,13 +6865,15 @@ body {
   margin-top: 8px;
 }
 
+/* 두께·자리는 화면 픽셀 배수로 반올림한다(--lg-dpx, 제목 밑 가로줄과 같다): 125% 배율에서 1px 은 1.25픽셀이라 놓인 높이에 따라
+   1픽셀·2픽셀로 그려져 줄마다 두께가 달라 보였다 (사용자 지적) */
 .kanban-plugin__lane-items > .kanban-plugin__item-wrapper + .kanban-plugin__item-wrapper:not(#lg)::before {
   content: "";
   position: absolute;
-  top: -4.5px;
+  top: round(-4.5px, var(--lg-dpx, 1px));
   left: 12px;
   right: 12px;
-  height: 1px;
+  height: round(1px, var(--lg-dpx, 1px));
   background-color: var(--lg-divider);
   pointer-events: none;
 }
@@ -6445,11 +7253,15 @@ body:not(.lg-ui) .mod-root .workspace-tab-header-container {
   --lg-bal-fl: 0px;
 }
 
-body:not(.lg-ui) .mod-root .workspace-tab-header-container:has(> .sidebar-toggle-button.mod-right) {
+/* 패널 토글이 든 탭 묶음: 왼쪽 토글은 Obsidian 이 창 왼쪽 위 묶음(.mod-top-left-space)에 둔다(측정으로 확인). 오른쪽 토글은 창 오른쪽 위
+   묶음에 늘 있는데, 오른쪽 패널을 열면 그 묶음을 가리키는 클래스가 없어 오른쪽 위 자리(.mod-top-right-space)이거나 편집창이 하나뿐일 때로 본다.
+   (예전엔 토글이 들었는지를 부모 선택자로 봤다, 스토어 린트 권고. 편집창을 나누고 오른쪽 패널을 연 경우만 버튼 하나 폭만큼 덜 맞는다) */
+body:not(.lg-ui) .mod-root .workspace-tabs.mod-top-right-space > .workspace-tab-header-container,
+body:not(.lg-ui) .workspace-split.mod-root > .workspace-tabs:only-child > .workspace-tab-header-container {
   --lg-bal-r: calc(var(--lg-btn) + var(--lg-gap));
 }
 
-body:not(.lg-ui) .mod-root .workspace-tab-header-container:has(> .sidebar-toggle-button.mod-left) {
+body:not(.lg-ui) .mod-root .workspace-tabs.mod-top-left-space > .workspace-tab-header-container {
   --lg-bal-l: calc(var(--lg-btn) + var(--lg-gap));
 }
 
@@ -6461,11 +7273,13 @@ body:not(.lg-ui).is-hidden-frameless:not(.is-fullscreen) .mod-root .workspace-ta
   --lg-bal-fl: var(--frame-left-space, 0px);
 }
 
-/* 빈칸은 Obsidian 의 빈칸 채움(spacer)을 맨 앞으로 옮겨 쓴다 (탭 줄의 ::before·::after 는 Obsidian 이 창 버튼 자리로 쓴다) */
+/* 빈칸은 Obsidian 의 빈칸 채움(spacer)을 맨 앞으로 옮겨 쓴다 (탭 줄의 ::before·::after 는 Obsidian 이 창 버튼 자리로 쓴다).
+   빈칸 뒤 줄 간격(gap)은 빈칸 폭에 넣고 뒤 여백으로 지운다: 빈칸이 0 으로 줄어도 간격이 남아 탭 알약이 왼쪽에서 그만큼 더 떨어졌다 (사용자 지적) */
 body:not(.lg-ui):not(.is-mobile) .mod-root .workspace-tab-header-container > .workspace-tab-header-spacer:not(#lg) {
   display: block;
   order: -3;
-  flex: 0 1000 max(0px, calc(var(--lg-btn) * 2 + var(--lg-gap) + var(--lg-bal-r) - var(--lg-bal-l) + var(--lg-bal-fr) - var(--lg-bal-fl)));
+  flex: 0 1000 calc(max(0px, calc(var(--lg-btn) * 2 + var(--lg-gap) + var(--lg-bal-r) - var(--lg-bal-l) + var(--lg-bal-fr) - var(--lg-bal-fl))) + var(--lg-gap));
+  margin-inline-end: calc(var(--lg-gap) * -1);
   min-width: 0;
   height: 1px;
   pointer-events: none;
@@ -6509,6 +7323,33 @@ body:not(.lg-ui):not(.is-phone) .menu:not(#lg) {
   }
 }
 
+/* 버튼 묶음 안 버튼의 호버 유리: 버튼이 가로로 길어 원 대신 버튼 폭의 알약으로 (패널 탭과 같은 방식) */
+body:not(.lg-ui) :is(.nav-header .nav-buttons-container, .view-header-nav-buttons) .clickable-icon:not(#lg)::before {
+  width: calc(100% + var(--lg-hover-d) - var(--lg-inner));
+  border-radius: 999px;
+  corner-shape: var(--lg-pill-shape);
+}
+
+/* 패널 버튼 줄의 검색창(개요·북마크 등): 버튼 묶음 아래 8px, 좌우는 패널 끝에서 --lg-gap 만큼 띄운다 */
+body:not(.lg-ui) .workspace-split:not(.mod-root) .nav-header > .search-input-container:not(#lg) {
+  width: auto;
+  margin: 8px var(--lg-gap) 0;
+}
+
+/* 파일 탐색기·개요의 버튼 줄: 목록 위에 띄우되(position: absolute 대신) 흐름 안에 두고 아래 여백을 줄 높이만큼 빼,
+   검색창이 열려 줄이 길어지면 늘어난 만큼 목록이 아래로 밀린다 (검색창이 목록 위에 겹쳤다) */
+body:not(.lg-ui):not(.is-mobile) .workspace-leaf-content:is([data-type="file-explorer"], [data-type="outline"]) > .nav-header:not(#lg) {
+  position: relative;
+  flex-shrink: 0;
+  margin-bottom: calc(var(--lg-nav-h) * -1);
+}
+
+/* 웹 뷰어 주소칸: 문서 경로 알약처럼 내용 폭으로 줄이지 않고, 남는 폭을 다 쓴다 (검색 제안창도 주소칸 폭을 따른다) */
+body:not(.lg-ui) .mod-root .workspace-leaf-content > .view-header .view-header-title-container.webviewer-address-container:not(#lg) {
+  flex: 1 1 auto;
+  margin-inline: var(--lg-gap);
+}
+
 /* ---- 태블릿 (플러그인 없이) ----
    - 첫 줄(편집창 탭 줄·서랍 보기 전환 알약)은 왼쪽 리본 알약의 위 끝(화면 안전 영역 바로 아래)에 맞춘다 (사용자 요청)
    - 둘째 줄(문서 위 버튼 줄·서랍 버튼 줄)은 첫 줄 알약 아래 8px 에서 시작한다
@@ -6535,11 +7376,12 @@ body.is-tablet:not(.lg-ui) .view-header .view-actions.mod-raised:not(#lg):not(#l
   gap: var(--lg-gap);
 }
 
-/* 편집창 탭 알약 가운데 맞춤 (데스크톱과 같은 빈칸) */
+/* 편집창 탭 알약 가운데 맞춤 (데스크톱과 같은 빈칸, 뒤 간격도 같은 방식으로 지운다) */
 body.is-tablet:not(.lg-ui) .mod-root .workspace-tab-header-container > .workspace-tab-header-spacer:not(#lg) {
   display: block;
   order: -3;
-  flex: 0 1000 max(0px, calc(var(--lg-btn) * 2 + var(--lg-gap) + var(--lg-bal-r) - var(--lg-bal-l)));
+  flex: 0 1000 calc(max(0px, calc(var(--lg-btn) * 2 + var(--lg-gap) + var(--lg-bal-r) - var(--lg-bal-l))) + var(--lg-gap));
+  margin-inline-end: calc(var(--lg-gap) * -1);
   min-width: 0;
   height: 1px;
   pointer-events: none;
@@ -6582,7 +7424,8 @@ body.is-tablet:not(.lg-ui) .workspace-drawer .workspace-leaf-content > .nav-head
   padding-top: calc(var(--lg-dtab-row2) + var(--lg-pill-h) + 8px);
 }
 
-body.is-tablet:not(.lg-ui) .workspace-drawer .workspace-leaf-content:not(:has(> .nav-header)) > .view-content:not(#lg):not(#lg) {
+/* 머리 줄이 없는 보기의 기본값. 머리 줄이 있으면 위 규칙(.nav-header ~ …)이 더 세게 덮는다 */
+body.is-tablet:not(.lg-ui) .workspace-drawer .workspace-leaf-content > .view-content:not(#lg):not(#lg) {
   padding-top: var(--lg-dtab-row2);
 }
 
