@@ -15,12 +15,11 @@ A translucent, glassy theme for Obsidian.
 
 ## Theme only vs. with the plugin
 
-The screenshots above show the theme together with the Companion plugin. With the theme alone, the glass looks the same, but the button layout, refraction and animations are not there.
+The screenshots above show the theme together with the Companion plugin. With the theme alone, the glass looks the same, but the button layout, refraction and animations are not there. With the theme only, the ribbon stays as a vertical pill on the left, the panel buttons sit in a row under the panel tab pill, and the tab pill and the path pill are separate above the editor.
 
 | Theme only | With the Companion plugin |
 |---|---|
 | <img src="images/theme-only-light.png" alt="Theme only"> | <img src="images/light-main.png" alt="With the Companion plugin"> |
-| <img src="images/mobile-theme-only-light.png" width="240" alt="Mobile, theme only"> | <img src="images/mobile-light.png" width="240" alt="Mobile, with the Companion plugin"> |
 
 ## Features
 
@@ -36,6 +35,7 @@ The **[Glass Shelf Companion](https://github.com/ummbition/glass-shelf-plugin) p
 ## Supported platforms
 
 - **Built mainly for desktop (Windows) and Android.**
+- On phones, blur is turned off to keep things smooth.
 - On iPhone and iPad, refraction does not work, so only blur is applied.
 - On macOS, we recommend leaving Obsidian's Translucent window setting (Settings → Appearance → Advanced) off. With it on, translucent areas get painted over again each time they redraw and gradually turn darker. This is a limit on the Obsidian and Electron side that the theme and plugin cannot fix.
 - The smooth corner curvature is visible on Chromium 139 or later.
