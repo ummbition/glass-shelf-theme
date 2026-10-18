@@ -374,8 +374,8 @@ body.theme-dark {
   --lg-rim-in-plain:
     inset 0 var(--lg-hi-y) 1px calc(var(--lg-hi-w, 1px) - var(--lg-hi-y)) rgb(255 255 255 / 0.2),
     inset 0 calc(var(--lg-hi-y) * -1) 1px calc(var(--lg-hi-w, 1px) - var(--lg-hi-y)) rgb(255 255 255 / 0.2);
-  --lg-hi-t-c: rgb(255 255 255 / 0.2); /* 위 하이라이트 색 (화살표 팝오버가 따로 그린다) */
-  --lg-hi-b-c: rgb(255 255 255 / 0.2);
+  --lg-hi-t-c: rgb(255 255 255 / 0.3); /* 위 하이라이트 색 (화살표 팝오버가 따로 그린다) */
+  --lg-hi-b-c: rgb(255 255 255 / 0.3);
   --lg-rim-out: var(--lg-rim-out-plain);
   --lg-rim-in: var(--lg-rim-in-plain);
   /* 선 그림자 (라이트와 같은 값, 사용자 요청). 예전 1px 검정 윤곽선은 역할이 거의 없어 뺐다 (사용자 요청) */
@@ -436,8 +436,8 @@ body.theme-dark {
   --lg-rim-in-plain:
     inset 0 var(--lg-hi-y) 1px calc(var(--lg-hi-w, 1px) - var(--lg-hi-y)) rgb(255 255 255 / calc(0.7 * var(--lg-u) + 0.2 * var(--lg-glass-t, 0))),
     inset 0 calc(var(--lg-hi-y) * -1) 1px calc(var(--lg-hi-w, 1px) - var(--lg-hi-y)) rgb(255 255 255 / calc(0.7 * var(--lg-u) + 0.2 * var(--lg-glass-t, 0)));
-  --lg-hi-t-c: rgb(255 255 255 / calc(0.7 * var(--lg-u) + 0.2 * var(--lg-glass-t, 0))); /* 위 하이라이트 색 (화살표 팝오버가 따로 그린다) */
-  --lg-hi-b-c: rgb(255 255 255 / calc(0.7 * var(--lg-u) + 0.2 * var(--lg-glass-t, 0)));
+  --lg-hi-t-c: rgb(255 255 255 / calc(0.7 * var(--lg-u) + 0.3 * var(--lg-glass-t, 0))); /* 위 하이라이트 색 (화살표 팝오버가 따로 그린다) */
+  --lg-hi-b-c: rgb(255 255 255 / calc(0.7 * var(--lg-u) + 0.3 * var(--lg-glass-t, 0)));
   --lg-shadow-sm:
     0 calc(1px * var(--lg-u)) calc(2px * var(--lg-u)) rgb(0 0 0 / calc(0.06 * var(--lg-u))),
     0 4px calc(16px * var(--lg-u) + 14px * var(--lg-glass-t, 0)) rgb(0 0 0 / calc(0.075 * var(--lg-u) + 0.3 * var(--lg-glass-t, 0)));
@@ -484,7 +484,8 @@ body.lg-tinted {
   --lg-rim-out:
     0 0 0 var(--lg-ol-w) color-mix(in srgb, rgb(0 0 0 / var(--lg-ol-a)), color-mix(in srgb, var(--lg-tint-deep) 55%, transparent) var(--lg-tint-w));
   --lg-cres-c: color-mix(in srgb, rgb(0 0 0 / var(--lg-cres-a)), color-mix(in srgb, var(--lg-tint-deep) 24%, transparent) var(--lg-tint-w));
-  --lg-ol-c: color-mix(in srgb, rgb(0 0 0 / var(--lg-ol-a)), color-mix(in srgb, var(--lg-tint-deep) 55%, transparent) var(--lg-tint-w));
+  /* 외곽선(테두리 위아래 끝)은 틴트를 켜도 틴트 없을 때와 같은 진하기(--lg-ol-a)로: 예전 55% 는 양옆 선(24%)보다 진해 위아래가 더 진해 보였다 (사용자 지적) */
+  --lg-ol-c: color-mix(in srgb, rgb(0 0 0 / var(--lg-ol-a)), color-mix(in srgb, var(--lg-tint-deep) calc(var(--lg-ol-a) * 100%), transparent) var(--lg-tint-w));
   --lg-rim-in:
     inset 0 var(--lg-hi-y) 1px calc(var(--lg-hi-w, 1px) - var(--lg-hi-y)) color-mix(in srgb, rgb(255 255 255 / 0.7), color-mix(in srgb, var(--lg-tint-light) 90%, transparent) var(--lg-tint-w)),
     inset 0 calc(var(--lg-hi-y) * -1) 1px calc(var(--lg-hi-w, 1px) - var(--lg-hi-y)) color-mix(in srgb, rgb(255 255 255 / 0.7), color-mix(in srgb, var(--lg-tint-light) 90%, transparent) var(--lg-tint-w));
@@ -688,8 +689,8 @@ body.lg-tinted.theme-dark {
   --lg-rim-in:
     inset 0 var(--lg-hi-y) 1px calc(var(--lg-hi-w, 1px) - var(--lg-hi-y)) color-mix(in srgb, rgb(255 255 255 / 0.2), color-mix(in srgb, var(--lg-tint-light) 35%, transparent) var(--lg-tint-w)),
     inset 0 calc(var(--lg-hi-y) * -1) 1px calc(var(--lg-hi-w, 1px) - var(--lg-hi-y)) color-mix(in srgb, rgb(255 255 255 / 0.2), color-mix(in srgb, var(--lg-tint-light) 35%, transparent) var(--lg-tint-w));
-  --lg-hi-t-c: color-mix(in srgb, rgb(255 255 255 / 0.2), color-mix(in srgb, var(--lg-tint-light) 35%, transparent) var(--lg-tint-w)); /* 위 하이라이트 색 (화살표 팝오버가 따로 그린다) */
-  --lg-hi-b-c: color-mix(in srgb, rgb(255 255 255 / 0.2), color-mix(in srgb, var(--lg-tint-light) 35%, transparent) var(--lg-tint-w));
+  --lg-hi-t-c: color-mix(in srgb, rgb(255 255 255 / 0.3), color-mix(in srgb, var(--lg-tint-light) 35%, transparent) var(--lg-tint-w)); /* 위 하이라이트 색 (화살표 팝오버가 따로 그린다) */
+  --lg-hi-b-c: color-mix(in srgb, rgb(255 255 255 / 0.3), color-mix(in srgb, var(--lg-tint-light) 35%, transparent) var(--lg-tint-w));
 }
 
 /* =========================================================
@@ -4859,7 +4860,7 @@ body.is-ios {
 body.theme-dark {
   --lg-menu-shadow: 0 24px 80px rgb(0 0 0 / 0.29); /* 1px 검정 고리 없음 (--lg-shadow-sm 과 같은 이유) */
   --lg-menu-glow: 0 0 24px rgb(0 0 0 / 0.4);
-  --lg-menu-hi: rgb(255 255 255 / 0.2);
+  --lg-menu-hi: rgb(255 255 255 / 0.3);
 }
 
 body:not(.is-phone) .menu:not(#lg) {
@@ -5951,34 +5952,19 @@ input[type="range"].lg-sl-pressed:not(#lg)::-webkit-slider-thumb {
 }
 
 /* =========================================================
-   콜아웃: 알약과 같은 유리 테두리(외곽선·좌우 초승달·위아래 하이라이트)와 둥근 사각형 모서리 (사용자 요청).
-   굴절·흐림·그림자는 뺀다: 콜아웃 뒤는 문서 바탕뿐이라 비칠 것이 없다(그림자도 사용자 요청으로 뺐다). 채움은 불투명하게, 문서 바탕에 콜아웃 색 10%.
-   테두리에도 콜아웃 색을 넣는다 (사용자 요청): 외곽선·초승달은 라이트에서는 검정 대신 콜아웃 색의 짙은 색, 다크에서는 검정 그대로(사용자 요청). 하이라이트는 라이트에서는 흰색 그대로(사용자 요청),
-   다크에서는 콜아웃 색의 밝은 색. 초승달은 알약보다 진하게, 라이트 하이라이트는 불투명하게 (사용자 요청: 대비를 더 세게)
-   Obsidian 은 라이트에서 콜아웃을 곱하기(multiply)로 섞는데, 그러면 하이라이트가 사라져 보통 섞기로 둔다
+   콜아웃: 애플 개발자 문서의 콜아웃처럼 평평한 판 (사용자 요청). 문서 안이라 유리(테두리 그라데이션·하이라이트·광택)는 쓰지 않는다.
+   바탕은 콜아웃 색을 문서 바탕에 섞지 않고 반투명 15%, 테두리는 콜아웃 색 실선 1px, 곡률은 large 알약(28px)과 같은 14px, 여백은 사방 12px.
+   Obsidian 은 라이트에서 콜아웃을 곱하기(multiply)로 섞는데, 보통 섞기로 둔다
    ========================================================= */
 .callout:not(#lg) {
-  --lg-co-deep: color-mix(in oklch, var(--callout-color) 60%, #000);
-  --lg-co-light: #fff;
-  --lg-co-ol-a: 0.1; /* 라이트 외곽선 진하기: 알약(6%)보다 진하게 (사용자 요청) */
-  --lg-co-cres-a: 0.6;
-  --lg-co-cres: color-mix(in srgb, var(--lg-co-deep) calc(var(--lg-co-cres-a) * 100%), transparent);
-  --lg-co-hi-a: 1;
-  --lg-co-hi-b: 1;
-  --lg-co-hi-y: calc(var(--lg-hi-y) + 0.5px); /* 하이라이트 폭: 알약보다 0.5px 넓게 (사용자 요청) */
   mix-blend-mode: normal;
-  border: var(--lg-cres-bd);
-  border-radius: var(--lg-r-m);
+  border: 1px solid var(--callout-color);
+  border-radius: calc(var(--lg-h-large) / 2);
+  --callout-padding: 12px; /* Obsidian 기본은 왼쪽만 24px */
   corner-shape: var(--lg-rect-shape);
-  background-color: color-mix(in oklch, var(--callout-color) 15%, var(--background-primary));
-  /* 테두리: 알약처럼 테두리 칸 한 줄에 외곽선과 양옆 선을 함께 칠한다 (사용자 요청, 예전엔 외곽선을 안쪽 그림자로 따로 그었다).
-     위아래 끝은 외곽선 색, 끝에서 --lg-cres-fade 만큼 들어가며 양옆 선 색. 색은 콜아웃의 짙은 색 */
-  --lg-co-ol: color-mix(in srgb, var(--lg-co-deep) calc(var(--lg-co-ol-a) * 100%), transparent);
-  background-image: linear-gradient(var(--lg-cres-dir), var(--lg-co-ol), var(--lg-co-cres) min(var(--lg-cres-fade), 50%), var(--lg-co-cres) max(calc(100% - var(--lg-cres-fade)), 50%), var(--lg-co-ol)), none;
-  background-clip: border-area, border-box;
-  box-shadow:
-    inset 0 var(--lg-co-hi-y) 1px calc(var(--lg-hi-w, 1px) - var(--lg-hi-y)) color-mix(in srgb, var(--lg-co-light) calc(var(--lg-co-hi-a) * 100%), transparent),
-    inset 0 calc(var(--lg-co-hi-y) * -1) 1px calc(var(--lg-hi-w, 1px) - var(--lg-hi-y)) color-mix(in srgb, var(--lg-co-light) calc(var(--lg-co-hi-b) * 100%), transparent);
+  background-color: color-mix(in srgb, var(--callout-color) 15%, transparent);
+  background-image: none;
+  box-shadow: none;
 }
 
 /* 코드 블록: 콜아웃과 같은 둥근 사각형 모서리만 (사용자 요청, 유리·테두리는 넣지 않는다). 인라인 코드는 그대로.
@@ -6019,6 +6005,19 @@ body {
   corner-shape: var(--lg-rect-shape);
 }
 
+/* 콜아웃 안의 표: 테두리를 반투명으로 바꿔 밑의 콜아웃 색이 비치게 한다 (사용자 지적: 회색 칸이 따로 떠 보였다). 코드는 원래 바탕색 그대로 (사용자 결정) */
+.callout:not(#lg) {
+  /* 표 테두리: 머리 줄 테두리(--table-header-border-color, Obsidian 기본은 불투명한 밝은 회색이라 하얗게 보였다)도 같은 반투명으로. 머리 줄 바탕은 두지 않는다 (사용자 요청) */
+  --table-border-color: color-mix(in srgb, var(--text-normal) 16%, transparent);
+  --table-header-border-color: var(--table-border-color);
+}
+
+/* 콜아웃 안의 인라인 코드·코드 블록: 얇은 테두리(글자색 12% 반투명)를 둘러, 회색 콜아웃이나 회색과 밝기가 비슷한 색 콜아웃 위에서도 칸이 구별되게 한다
+   (사용자 요청). 자리를 차지하지 않게 안쪽 그림자로 그린다(모서리 곡률을 따른다) */
+.callout:not(#lg) :is(pre, :not(pre) > code):not(#lg) {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text-normal) 12%, transparent);
+}
+
 /* 콜아웃 본문은 Obsidian 이 넘치면 가로로 스크롤하게 둬(overflow auto) 가장자리 밖을 자른다. 체크박스가 본문 왼쪽 끝에서 6px 안쪽에 있어
    체크했을 때 글로우(10px)의 왼쪽이 잘리고, 커서 쪽으로 끌리는 호버 유리도 잘렸다 (사용자 지적). 본문 상자를 콜아웃 여백 쪽으로
    12px(위아래 8px) 넓히고 그만큼 안쪽 여백을 줘, 글자 자리는 그대로 두고 자르는 경계만 바깥으로 옮긴다 */
@@ -6027,14 +6026,6 @@ body {
   padding: 8px 12px;
 }
 
-body.theme-dark .callout:not(#lg) {
-  --lg-co-deep: #000;
-  --lg-co-ol-a: var(--lg-ol-a);
-  --lg-co-light: color-mix(in oklch, var(--callout-color) 40%, #fff);
-  --lg-co-cres-a: 1;
-  --lg-co-hi-a: 0.2;
-  --lg-co-hi-b: 0.14;
-}
 
 /* =========================================================
    헤더 밑 가로줄 (원티드 폰트 스니펫에서 가져옴, 사용자 요청)
