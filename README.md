@@ -8,18 +8,21 @@ A translucent, glassy theme for Obsidian.
 > ### Requires the Glass Shelf Companion plugin
 > This theme is built to be used together with the Glass Shelf Companion plugin. Install and enable both to get the intended look.
 
-<p align="center">
-  <img src="images/light-main.png" width="49%" alt="Light mode">
-  <img src="images/dark-main.png" width="49%" alt="Dark mode">
-</p>
+![Light mode](images/light-main.png)
+
+![Dark mode](images/dark-main.png)
 
 ## Theme only vs. with the plugin
 
 The screenshots above show the theme together with the Companion plugin. With the theme alone, the glass looks the same, but the button layout, refraction and animations are not there. With the theme only, the ribbon stays as a vertical pill on the left, the panel buttons sit in a row under the panel tab pill, and the tab pill and the path pill are separate above the editor.
 
-| Theme only | With the Companion plugin |
-|---|---|
-| <img src="images/theme-only-light.png" alt="Theme only"> | <img src="images/light-main.png" alt="With the Companion plugin"> |
+**Theme only**
+
+![Theme only](images/theme-only-light.png)
+
+**With the Companion plugin**
+
+![With the Companion plugin](images/light-main.png)
 
 ## Features
 

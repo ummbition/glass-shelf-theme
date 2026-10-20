@@ -8,18 +8,21 @@
 > ### Glass Shelf Companion 플러그인이 필요합니다
 > 이 테마는 Glass Shelf Companion 플러그인과 함께 쓰도록 만들었습니다. 테마와 플러그인을 모두 설치하고 켜야 의도한 화면이 완성됩니다.
 
-<p align="center">
-  <img src="images/light-main.png" width="49%" alt="라이트 모드">
-  <img src="images/dark-main.png" width="49%" alt="다크 모드">
-</p>
+![라이트 모드](images/light-main.png)
+
+![다크 모드](images/dark-main.png)
 
 ## 테마만 쓸 때와 비교
 
 위 화면은 Companion 플러그인을 함께 켠 모습입니다. 테마만 켜면 유리 표현은 같고, 버튼 배치와 굴절·애니메이션이 빠집니다. 테마만 켠 화면에서는 리본이 왼쪽 세로 알약으로 남고, 패널 버튼은 패널 탭 알약 아래 줄에, 편집창 위에는 탭 알약과 경로 알약이 따로 놓입니다.
 
-| 테마만 | Companion 플러그인과 함께 |
-|---|---|
-| <img src="images/theme-only-light.png" alt="테마만"> | <img src="images/light-main.png" alt="플러그인과 함께"> |
+**테마만**
+
+![테마만](images/theme-only-light.png)
+
+**Companion 플러그인과 함께**
+
+![플러그인과 함께](images/light-main.png)
 
 ## 특징
 
